@@ -282,7 +282,8 @@ export default function Home() {
 }
 
 function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number, efficiency: number ): Result | null {
-    console.log( `outputPerMinute needed for ${ item }: `, outputPerMinuteNeeded );
+    console.log( '%c FIND A CRAFT', 'background: #6EC600; color: #000000' );
+    console.log( `OutputPerMinute needed for ${ item }: `, outputPerMinuteNeeded );
 
     const crafts: CraftData[] = getAllCraftData();
 
@@ -353,7 +354,10 @@ function getAllItems(): ItemData[] {
 function getAllCraftData(): CraftData[] {
     const assemblers = require( '../data/assembler_mk1.json' );
     const threshers  = require( '../data/thresher_mk1.json' );
+    // const smelters   = require( '../data/smelter_mk1.json' );
+    // const drills     = require( '../data/drill_mk1.json' );
 
+    // return [ ...assemblers, ...threshers, ...smelters, ...drills ];
     return [ ...assemblers, ...threshers ];
 }
 

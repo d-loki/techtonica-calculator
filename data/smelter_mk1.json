@@ -1,0 +1,107 @@
+[
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Limestone"
+        ],
+        "outputs_per_min": [
+            80.0
+        ],
+        "inputs":          [
+            "Kindlevine_Extract"
+        ],
+        "inputs_per_min":  [
+            80.0
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Iron_Ingot"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
+            "Iron_Ore"
+        ],
+        "inputs_per_min":  [
+            30.0
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Copper_Ingot"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
+            "Copper_Ore"
+        ],
+        "inputs_per_min":  [
+            30.0
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Carbon_powder"
+        ],
+        "outputs_per_min": [
+            60.0
+        ],
+        "inputs":          [
+            "Plantmatter_Brick"
+        ],
+        "inputs_per_min":  [
+            1.0
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Atlantum_Ingot"
+        ],
+        "outputs_per_min": [
+            25.0
+        ],
+        "inputs":          [
+            "Atlantum_Mixture"
+        ],
+        "inputs_per_min":  [
+            25.0
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Quicklime"
+        ],
+        "outputs_per_min": [
+            25.0
+        ],
+        "inputs":          [
+            "Limestone"
+        ],
+        "inputs_per_min":  [
+            40.0
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Certamic_parts"
+        ],
+        "outputs_per_min": [
+            24.0
+        ],
+        "inputs":          [
+            "Clay"
+        ],
+        "inputs_per_min":  [
+            48.0
+        ]
+    }
+]

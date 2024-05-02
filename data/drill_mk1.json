@@ -1,0 +1,35 @@
+[
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Iron_Ore"
+        ],
+        "outputs_per_min": [
+            25
+        ],
+        "inputs":          [],
+        "inputs_per_min":  []
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Copper_Ore"
+        ],
+        "outputs_per_min": [
+            25
+        ],
+        "inputs":          [],
+        "inputs_per_min":  []
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Limestone"
+        ],
+        "outputs_per_min": [
+            25
+        ],
+        "inputs":          [],
+        "inputs_per_min":  []
+    }
+]

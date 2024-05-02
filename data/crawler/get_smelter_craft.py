@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup
 import json
 
 # Chemin vers le fichier HTML
-html_file_path = "data/raw_data/assembler_mk1.html"
+html_file_path = "data/raw_data/smelter_mk1.html"
 # Chemin pour enregistrer le fichier JSON
-json_file_path = "data/assembler_mk1.json"
+json_file_path = "data/smelter_mk1.json"
 
 # Initialisation de la structure JSON
 data = []
@@ -30,16 +30,16 @@ with open(html_file_path, 'r') as file:
         cells = row.find_all('td')
         # Création d'un dictionnaire pour stocker les données de chaque ligne
 
-        item = replace_spaces_with_underscores(cells[1].get_text().strip())
-        if item == "Plantmatter":
-            continue
+        # On split sur / et on prend le premier élément
+        outputs_per_min = cells[3].get_text().strip().split("/")[0]
+        inputs_per_min = cells[1].get_text().strip().split("/")[0]
 
         entry = {
-            "efficiency": cells[0].get_text().strip(),
-            "outputs": [item],
-            "outputs_per_min": [float(cells[2].get_text().strip())],
-            "inputs": [replace_spaces_with_underscores(value.strip()) for value in cells[3].get_text().strip().split(",")],
-            "inputs_per_min": [float(value.strip()) for value in cells[4].get_text().strip().split(",")]
+            "efficiency": "100%",
+            "outputs": [replace_spaces_with_underscores(cells[2].get_text().strip())],
+            "outputs_per_min": [float(outputs_per_min)],
+            "inputs": [replace_spaces_with_underscores(cells[0].get_text().strip())],
+            "inputs_per_min": [float(inputs_per_min)],
                 }
         # Ajout de la ligne au JSON
         data.append(entry)
