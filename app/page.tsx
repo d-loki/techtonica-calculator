@@ -105,33 +105,23 @@ export default function Home() {
                                                            item:   'Conveyer_Belt_MK2',
                                                            amount: 1,
                                                            output: 0,
-                                                           type:   'by_amount',
+                                                           type: 'by_output',
                                                        },
                                                    } );
 
     const [ craft, setCraft ] = useState<Result | null>( null );
-    const [ type, setType ]   = useState<string>( 'by_amount' );
+    const [ type, setType ] = useState<string>( 'by_output' );
 
     // 2. Define a submit handler.
     function onSubmit( values: FormSchema ) {
         if ( type === 'by_output' ) {
-            // setOutput( values.output );
-            // let amount = 0;
-            // if ( crafts ) {
-            //     amount = values.output / crafts.amount_per_min;
-            // }
-            // setAmount( amount );
-
-        } else if ( type === 'by_amount' ) {
-            const craft = findCraft( values.item, values.amount );
+            const craft = findCraftByOutputPerMinute( values.item, values.output );
             console.log( craft );
             setCraft( craft );
-            // setAmount( values.amount );
-            // let output = 0;
-            // if ( crafts ) {
-            //     output = crafts.amount_per_min * values.amount;
-            // }
-            // setOutput( output );
+        } else if ( type === 'by_amount' ) {
+            const craft = findCraftByAmountOfMachine( values.item, values.amount );
+            console.log( craft );
+            setCraft( craft );
         }
     }
 
@@ -246,7 +236,7 @@ export default function Home() {
     );
 }
 
-function findCraft( item: string, nbRequiredMachine: number = 1 ): Result | null {
+function findCraftByAmountOfMachine( item: string, nbRequiredMachine: number = 1 ): Result | null {
     console.log( `NB Machine for ${ item }`, nbRequiredMachine );
     const crafts: CraftData[] = require( '../data/assembler_mk1.json' );
 
@@ -267,7 +257,7 @@ function findCraft( item: string, nbRequiredMachine: number = 1 ): Result | null
         inputs.push( { name: input, amount_per_min: amountPerMinInput } );
         console.log( `need ${ amountPerMinInput } ${ input } per minute` );
 
-        const additionalCraft = findCraft( input, nbRequiredMachine );
+        const additionalCraft = findCraftByAmountOfMachine( input, nbRequiredMachine );
 
         if ( additionalCraft ) {
             console.log( `nbRequiredMachine for ${ item }`,
@@ -286,3 +276,46 @@ function findCraft( item: string, nbRequiredMachine: number = 1 ): Result | null
         additional_crafts:   additionalCrafts,
     };
 }
+
+function findCraftByOutputPerMinute( item: string, outputPerMinute: number ): Result | null {
+    const crafts: CraftData[] = require( '../data/assembler_mk1.json' );
+
+    const craft = crafts.find( ( craft ) => craft.recipe === item );
+
+    if ( craft === undefined ) {
+        return null;
+    }
+
+    let nbRequiredMachine = Math.ceil( outputPerMinute / craft.amount_per_min );
+
+    const inputs: { name: string; amount_per_min: number; }[] = [];
+    const additionalCrafts: Result[]                          = [];
+
+    for ( let i = 0; i < craft.required_inputs.length; i++ ) {
+        const input           = craft.required_inputs[ i ];
+        let amountPerMinInput = craft.amount_per_min_inputs[ i ];
+        amountPerMinInput *= nbRequiredMachine;
+
+        inputs.push( { name: input, amount_per_min: amountPerMinInput } );
+        console.log( `need ${ amountPerMinInput } ${ input } per minute` );
+
+        const additionalCraft = findCraftByAmountOfMachine( input, nbRequiredMachine );
+
+        if ( additionalCraft ) {
+            console.log( `nbRequiredMachine for ${ item }`,
+                         Math.ceil( amountPerMinInput / additionalCraft.output_per_min ) );
+            additionalCraft.nb_required_machine = Math.ceil( amountPerMinInput / additionalCraft.output_per_min );
+
+            additionalCrafts.push( additionalCraft );
+        }
+    }
+
+    return {
+        recipe_name:         craft.recipe,
+        nb_required_machine: nbRequiredMachine,
+        output_per_min:      craft.amount_per_min,
+        inputs,
+        additional_crafts:   additionalCrafts,
+    };
+}
+
