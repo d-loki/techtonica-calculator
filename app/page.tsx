@@ -31,6 +31,7 @@ type FormSchema = {
 
 type Result = {
     recipe_name: string;
+    nb_required_machine: number;
     output_per_min: number;
     inputs: {
         name: string;
@@ -39,12 +40,20 @@ type Result = {
     additional_crafts?: Result[];
 }
 
-const DisplayCraft: FC<Result> = ( { recipe_name, output_per_min, inputs, additional_crafts } ) => {
+const DisplayCraft: FC<Result> = ( {
+                                       recipe_name,
+                                       output_per_min,
+                                       inputs,
+                                       additional_crafts,
+                                       nb_required_machine,
+                                   } ) => {
     return (
         <div className="grid gap-4">
             <div className="mb-3">
                 <h3 className="font-semibold">{ recipe_name }</h3>
-                <p>Production: <span className="text-green-400 font-bold">{ output_per_min }/m</span></p>
+                <p>Production: <span className="text-green-400 font-bold">{ output_per_min * nb_required_machine }/m</span>
+                </p>
+                <p>Assembler: { nb_required_machine }</p>
             </div>
             <div className="mb-3">
                 <h4 className="font-medium mb-2">Input items</h4>
@@ -68,7 +77,7 @@ const DisplayCraft: FC<Result> = ( { recipe_name, output_per_min, inputs, additi
                                 additional_crafts.map( ( craft ) => (
                                     <li key={ craft.recipe_name } className="flex justify-between">
                                         <span>{ craft.recipe_name }</span>
-                                        <span className="text-blue-400 font-bold">{ craft.output_per_min }/m</span>
+                                        <span className="text-blue-400 font-bold">{ craft.output_per_min * nb_required_machine }/m</span>
                                     </li>
                                 ) )
                             }
@@ -85,66 +94,6 @@ const DisplayCraft: FC<Result> = ( { recipe_name, output_per_min, inputs, additi
                     ) )
                 }
             </div>
-            {/*<div>*/ }
-            {/*    <h4 className="font-medium">Dagger</h4>*/ }
-            {/*    <p>Production: 8 per minute</p>*/ }
-            {/*    <h4 className="font-medium">Required Components</h4>*/ }
-            {/*    <ul className="grid gap-2">*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span>Iron Ingot</span>*/ }
-            {/*            <span>3 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span>Leather</span>*/ }
-            {/*            <span>1 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span>Wood</span>*/ }
-            {/*            <span>2 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*    </ul>*/ }
-            {/*    <h4 className="font-medium">Additional Crafts</h4>*/ }
-            {/*    <ul className="grid gap-2">*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span className="font-semibold">Throwing Knife</span>*/ }
-            {/*            <span>6 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span className="font-semibold">Poisoned Dagger</span>*/ }
-            {/*            <span>5 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*    </ul>*/ }
-            {/*</div>*/ }
-            {/*<div>*/ }
-            {/*    <h4 className="font-medium">Axe</h4>*/ }
-            {/*    <p>Production: 6 per minute</p>*/ }
-            {/*    <h4 className="font-medium">Required Components</h4>*/ }
-            {/*    <ul className="grid gap-2">*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span>Iron Ingot</span>*/ }
-            {/*            <span>4 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span>Leather</span>*/ }
-            {/*            <span>1 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span>Wood</span>*/ }
-            {/*            <span>3 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*    </ul>*/ }
-            {/*    <h4 className="font-medium">Additional Crafts</h4>*/ }
-            {/*    <ul className="grid gap-2">*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span className="font-semibold">Battle Axe</span>*/ }
-            {/*            <span>5 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*        <li className="flex justify-between">*/ }
-            {/*            <span className="font-semibold">Hatchet</span>*/ }
-            {/*            <span>7 per minute</span>*/ }
-            {/*        </li>*/ }
-            {/*    </ul>*/ }
-            {/*</div>*/ }
         </div>
     );
 };
@@ -165,29 +114,25 @@ export default function Home() {
 
     // 2. Define a submit handler.
     function onSubmit( values: FormSchema ) {
-        const craft = findCraft( values.item );
-        // const crafts    = findCrafts( values.item, null );
-        console.log( craft );
-        setCraft( craft );
-        // console.log( crafts );
-        // setCrafts( crafts );
+        if ( type === 'by_output' ) {
+            // setOutput( values.output );
+            // let amount = 0;
+            // if ( crafts ) {
+            //     amount = values.output / crafts.amount_per_min;
+            // }
+            // setAmount( amount );
 
-        // if ( type === 'by_output' ) {
-        //     setOutput( values.output );
-        //     let amount = 0;
-        //     if ( crafts ) {
-        //         amount = values.output / crafts.amount_per_min;
-        //     }
-        //     setAmount( amount );
-        //
-        // } else if ( type === 'by_amount' ) {
-        //     setAmount( values.amount );
-        //     let output = 0;
-        //     if ( crafts ) {
-        //         output = crafts.amount_per_min * values.amount;
-        //     }
-        //     setOutput( output );
-        // }
+        } else if ( type === 'by_amount' ) {
+            const craft = findCraft( values.item, values.amount );
+            console.log( craft );
+            setCraft( craft );
+            // setAmount( values.amount );
+            // let output = 0;
+            // if ( crafts ) {
+            //     output = crafts.amount_per_min * values.amount;
+            // }
+            // setOutput( output );
+        }
     }
 
     return (
@@ -301,7 +246,8 @@ export default function Home() {
     );
 }
 
-function findCraft( item: string ): Result | null {
+function findCraft( item: string, nbRequiredMachine: number = 1 ): Result | null {
+    console.log( `NB Machine for ${ item }`, nbRequiredMachine );
     const crafts: CraftData[] = require( '../data/assembler_mk1.json' );
 
     const craft = crafts.find( ( craft ) => craft.recipe === item );
@@ -311,25 +257,32 @@ function findCraft( item: string ): Result | null {
     }
 
     const inputs: { name: string; amount_per_min: number; }[] = [];
-    const additional_crafts: Result[]                         = [];
+    const additionalCrafts: Result[] = [];
 
     for ( let i = 0; i < craft.required_inputs.length; i++ ) {
-        const input  = craft.required_inputs[ i ];
-        const amount = craft.amount_per_min_inputs[ i ];
+        const input           = craft.required_inputs[ i ];
+        let amountPerMinInput = craft.amount_per_min_inputs[ i ];
+        amountPerMinInput *= nbRequiredMachine;
 
-        inputs.push( { name: input, amount_per_min: amount } );
+        inputs.push( { name: input, amount_per_min: amountPerMinInput } );
+        console.log( `need ${ amountPerMinInput } ${ input } per minute` );
 
-        const additionalCraft = findCraft( input );
+        const additionalCraft = findCraft( input, nbRequiredMachine );
 
         if ( additionalCraft ) {
-            additional_crafts.push( additionalCraft );
+            console.log( `nbRequiredMachine for ${ item }`,
+                         Math.ceil( amountPerMinInput / additionalCraft.output_per_min ) );
+            additionalCraft.nb_required_machine = Math.ceil( amountPerMinInput / additionalCraft.output_per_min );
+
+            additionalCrafts.push( additionalCraft );
         }
     }
 
     return {
-        recipe_name:    craft.recipe,
-        output_per_min: craft.amount_per_min,
+        recipe_name:         craft.recipe,
+        nb_required_machine: nbRequiredMachine,
+        output_per_min:      craft.amount_per_min,
         inputs,
-        additional_crafts,
+        additional_crafts:   additionalCrafts,
     };
 }
