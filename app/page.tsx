@@ -1,113 +1,335 @@
-import Image from "next/image";
+'use client';
+
+import { Input } from '@/components/ui/input';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import { FC, useState } from 'react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Separator } from '@/components/ui/separator';
+
+type CraftData = {
+    upgrade_Level: string;
+    recipe: string;
+    amount_per_min: number;
+    required_inputs: string[];
+    amount_per_min_inputs: number[];
+}
+
+type ItemData = {
+    name: string;
+    stack_size: number;
+}
+
+type FormSchema = {
+    item: string;
+    amount: number;
+    output: number;
+    type: 'by_amount' | 'by_output'
+}
+
+type Result = {
+    recipe_name: string;
+    output_per_min: number;
+    inputs: {
+        name: string;
+        amount_per_min: number;
+    }[];
+    additional_crafts?: Result[];
+}
+
+const DisplayCraft: FC<Result> = ( { recipe_name, output_per_min, inputs, additional_crafts } ) => {
+    return (
+        <div className="grid gap-4">
+            <div className="mb-3">
+                <h3 className="font-semibold">{ recipe_name }</h3>
+                <p>Production: <span className="text-green-400 font-bold">{ output_per_min }/m</span></p>
+            </div>
+            <div className="mb-3">
+                <h4 className="font-medium mb-2">Input items</h4>
+                <ul className="grid gap-2">
+                    {
+                        inputs.map( ( input ) => (
+                            <li key={ input.name } className="flex justify-between">
+                                <span>{ input.name }</span>
+                                <span className="text-red-400 font-bold">{ input.amount_per_min }/m</span>
+                            </li>
+                        ) )
+                    }
+                </ul>
+            </div>
+            {
+                additional_crafts && additional_crafts.length > 0 && (
+                    <div>
+                        <h4 className="font-medium mb-2">Intermediate Crafts</h4>
+                        <ul className="grid gap-2">
+                            {
+                                additional_crafts.map( ( craft ) => (
+                                    <li key={ craft.recipe_name } className="flex justify-between">
+                                        <span>{ craft.recipe_name }</span>
+                                        <span className="text-blue-400 font-bold">{ craft.output_per_min }/m</span>
+                                    </li>
+                                ) )
+                            }
+                        </ul>
+                    </div>
+                )
+            }
+
+            <Separator className="my-2" />
+            <div>
+                {
+                    additional_crafts && additional_crafts.map( ( craft ) => (
+                        <DisplayCraft key={ craft.recipe_name } { ...craft } />
+                    ) )
+                }
+            </div>
+            {/*<div>*/ }
+            {/*    <h4 className="font-medium">Dagger</h4>*/ }
+            {/*    <p>Production: 8 per minute</p>*/ }
+            {/*    <h4 className="font-medium">Required Components</h4>*/ }
+            {/*    <ul className="grid gap-2">*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span>Iron Ingot</span>*/ }
+            {/*            <span>3 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span>Leather</span>*/ }
+            {/*            <span>1 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span>Wood</span>*/ }
+            {/*            <span>2 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*    </ul>*/ }
+            {/*    <h4 className="font-medium">Additional Crafts</h4>*/ }
+            {/*    <ul className="grid gap-2">*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span className="font-semibold">Throwing Knife</span>*/ }
+            {/*            <span>6 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span className="font-semibold">Poisoned Dagger</span>*/ }
+            {/*            <span>5 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*    </ul>*/ }
+            {/*</div>*/ }
+            {/*<div>*/ }
+            {/*    <h4 className="font-medium">Axe</h4>*/ }
+            {/*    <p>Production: 6 per minute</p>*/ }
+            {/*    <h4 className="font-medium">Required Components</h4>*/ }
+            {/*    <ul className="grid gap-2">*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span>Iron Ingot</span>*/ }
+            {/*            <span>4 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span>Leather</span>*/ }
+            {/*            <span>1 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span>Wood</span>*/ }
+            {/*            <span>3 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*    </ul>*/ }
+            {/*    <h4 className="font-medium">Additional Crafts</h4>*/ }
+            {/*    <ul className="grid gap-2">*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span className="font-semibold">Battle Axe</span>*/ }
+            {/*            <span>5 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*        <li className="flex justify-between">*/ }
+            {/*            <span className="font-semibold">Hatchet</span>*/ }
+            {/*            <span>7 per minute</span>*/ }
+            {/*        </li>*/ }
+            {/*    </ul>*/ }
+            {/*</div>*/ }
+        </div>
+    );
+};
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    const items: ItemData[] = require( '../data/items.json' );
+    const form              = useForm<FormSchema>( {
+                                                       defaultValues: {
+                                                           item:   'Conveyer_Belt_MK2',
+                                                           amount: 1,
+                                                           output: 0,
+                                                           type:   'by_amount',
+                                                       },
+                                                   } );
+
+    const [ craft, setCraft ] = useState<Result | null>( null );
+    const [ type, setType ]   = useState<string>( 'by_amount' );
+
+    // 2. Define a submit handler.
+    function onSubmit( values: FormSchema ) {
+        const craft = findCraft( values.item );
+        // const crafts    = findCrafts( values.item, null );
+        console.log( craft );
+        setCraft( craft );
+        // console.log( crafts );
+        // setCrafts( crafts );
+
+        // if ( type === 'by_output' ) {
+        //     setOutput( values.output );
+        //     let amount = 0;
+        //     if ( crafts ) {
+        //         amount = values.output / crafts.amount_per_min;
+        //     }
+        //     setAmount( amount );
+        //
+        // } else if ( type === 'by_amount' ) {
+        //     setAmount( values.amount );
+        //     let output = 0;
+        //     if ( crafts ) {
+        //         output = crafts.amount_per_min * values.amount;
+        //     }
+        //     setOutput( output );
+        // }
+    }
+
+    return (
+        <div key="1" className="container mx-auto max-w-6xl py-8 grid md:grid-cols-2 gap-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Craft Calculator</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Form { ...form }>
+                        <form onSubmit={ form.handleSubmit( onSubmit ) } className="grid gap-4">
+                            <FormField
+                                control={ form.control }
+                                name="item"
+                                render={ ( { field } ) => (
+                                    <FormItem>
+                                        <FormLabel>Item</FormLabel>
+                                        <Select onValueChange={ field.onChange } defaultValue={ field.value }>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select an item" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {
+                                                    items.map( ( item ) => (
+                                                        <SelectItem key={ item.name } value={ item.name }>
+                                                            { item.name }
+                                                        </SelectItem>
+                                                    ) )
+                                                }
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                ) }
+                            />
+                            <FormField
+                                control={ form.control }
+                                name="type"
+                                render={ ( { field } ) => (
+                                    <FormItem>
+                                        <FormLabel>Type</FormLabel>
+                                        <Select onValueChange={ ( e ) => setType( e ) } defaultValue={ field.value }>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select a type" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="by_output">By Output</SelectItem>
+                                                <SelectItem value="by_amount">By Amount</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                ) }
+                            />
+                            {
+                                type === 'by_output' && (
+                                    <FormField
+                                        control={ form.control }
+                                        name="output"
+                                        render={ ( { field } ) => (
+                                            <FormItem>
+                                                <FormLabel>Ouput per minute</FormLabel>
+                                                <FormControl>
+                                                    <Input type="number" placeholder="1" { ...field } />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        ) }
+                                    />
+                                )
+                            }
+                            {
+                                type !== 'by_output' && (
+                                    <FormField
+                                        control={ form.control }
+                                        name="amount"
+                                        render={ ( { field } ) => (
+                                            <FormItem>
+                                                <FormLabel>Amount of Assemblers</FormLabel>
+                                                <FormControl>
+                                                    <Input type="number" placeholder="1" { ...field } />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        ) }
+                                    />
+                                )
+                            }
+                            <Button type="submit">Calculate</Button>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Craft Results</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {
+                        craft && (
+                            <DisplayCraft { ...craft } />
+                        )
+                    }
+                </CardContent>
+            </Card>
         </div>
-      </div>
+    );
+}
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+function findCraft( item: string ): Result | null {
+    const crafts: CraftData[] = require( '../data/assembler_mk1.json' );
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    const craft = crafts.find( ( craft ) => craft.recipe === item );
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+    if ( craft === undefined ) {
+        return null;
+    }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+    const inputs: { name: string; amount_per_min: number; }[] = [];
+    const additional_crafts: Result[]                         = [];
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    for ( let i = 0; i < craft.required_inputs.length; i++ ) {
+        const input  = craft.required_inputs[ i ];
+        const amount = craft.amount_per_min_inputs[ i ];
+
+        inputs.push( { name: input, amount_per_min: amount } );
+
+        const additionalCraft = findCraft( input );
+
+        if ( additionalCraft ) {
+            additional_crafts.push( additionalCraft );
+        }
+    }
+
+    return {
+        recipe_name:    craft.recipe,
+        output_per_min: craft.amount_per_min,
+        inputs,
+        additional_crafts,
+    };
 }
