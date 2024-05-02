@@ -1,0 +1,38 @@
+[
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Kindlevine_Extract",
+            "Plantmatter_Fiber"
+        ],
+        "outputs_per_min": [
+            30,
+            30
+
+        ],
+        "inputs":          [
+            "Kindlevine_Stem"
+        ],
+        "inputs_per_min":  [
+            10
+        ]
+    },
+    {
+        "efficiency":      "100%",
+        "outputs":         [
+            "Kindlevine_Seed",
+            "Kindlevine_Stem"
+        ],
+        "outputs_per_min": [
+            10,
+            30
+
+        ],
+        "inputs":          [
+            "Kindlevine"
+        ],
+        "inputs_per_min":  [
+            10
+        ]
+    }
+]

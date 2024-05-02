@@ -10,11 +10,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Separator } from '@/components/ui/separator';
 
 type CraftData = {
-    upgrade_Level: string;
-    recipe: string;
-    amount_per_min: number;
-    required_inputs: string[];
-    amount_per_min_inputs: number[];
+    efficiency: string;
+    outputs: string[];
+    outputs_per_min: number[];
+    inputs: string[];
+    inputs_per_min: number[];
 }
 
 type ItemData = {
@@ -30,9 +30,11 @@ type FormSchema = {
 }
 
 type Result = {
-    recipe_name: string;
+    outputs: {
+        name: string;
+        amount_per_min: number;
+    }[];
     nb_required_machine: number;
-    output_per_min: number;
     inputs: {
         name: string;
         amount_per_min: number;
@@ -41,8 +43,7 @@ type Result = {
 }
 
 const DisplayCraft: FC<Result> = ( {
-                                       recipe_name,
-                                       output_per_min,
+                                       outputs,
                                        inputs,
                                        additional_crafts,
                                        nb_required_machine,
@@ -50,10 +51,19 @@ const DisplayCraft: FC<Result> = ( {
     return (
         <div className="grid gap-4">
             <div className="mb-3">
-                <h3 className="font-semibold">{ recipe_name }</h3>
-                <p>Production: <span className="text-green-400 font-bold">{ output_per_min * nb_required_machine }/m</span>
-                </p>
-                <p>Assembler: { nb_required_machine }</p>
+                {
+                    outputs.map( ( output ) => (
+                        <div key={ output.name } className="mb-2">
+                            <div className="flex justify-between mb-1">
+                                <span>{ output.name }</span>
+                                <span className="text-green-400 font-bold">{ output.amount_per_min }/m</span>
+                            </div>
+                            <div>
+                                <span>Machines: { nb_required_machine }</span>
+                            </div>
+                        </div>
+                    ) )
+                }
             </div>
             <div className="mb-3">
                 <h4 className="font-medium mb-2">Input items</h4>
@@ -74,12 +84,17 @@ const DisplayCraft: FC<Result> = ( {
                         <h4 className="font-medium mb-2">Intermediate Crafts</h4>
                         <ul className="grid gap-2">
                             {
-                                additional_crafts.map( ( craft ) => (
-                                    <li key={ craft.recipe_name } className="flex justify-between">
-                                        <span>{ craft.recipe_name }</span>
-                                        <span className="text-blue-400 font-bold">{ craft.output_per_min * nb_required_machine }/m</span>
-                                    </li>
-                                ) )
+                                additional_crafts.map( ( craft ) => {
+                                    return (
+                                        craft.outputs.map( ( output ) => (
+                                            <li key={ output.name } className="flex justify-between">
+                                                <span>{ output.name }</span>
+                                                <span className="text-green-400 font-bold">{ output.amount_per_min }/m</span>
+                                            </li>
+                                        ) )
+
+                                    );
+                                } )
                             }
                         </ul>
                     </div>
@@ -89,9 +104,10 @@ const DisplayCraft: FC<Result> = ( {
             <Separator className="my-2" />
             <div>
                 {
-                    additional_crafts && additional_crafts.map( ( craft ) => (
-                        <DisplayCraft key={ craft.recipe_name } { ...craft } />
-                    ) )
+                    additional_crafts && additional_crafts.map( ( craft ) => {
+                        const key = crypto.randomUUID();
+                        return ( <DisplayCraft key={ key } { ...craft } /> );
+                    } )
                 }
             </div>
         </div>
@@ -99,7 +115,7 @@ const DisplayCraft: FC<Result> = ( {
 };
 
 export default function Home() {
-    const items: ItemData[] = require( '../data/items.json' );
+    const items: ItemData[] = getAllItems();
     const form              = useForm<FormSchema>( {
                                                        defaultValues: {
                                                            item:   'Conveyer_Belt_MK2',
@@ -119,10 +135,22 @@ export default function Home() {
             console.log( craft );
             setCraft( craft );
         } else if ( type === 'by_amount' ) {
-            const craft = findCraftByAmountOfMachine( values.item, values.amount );
+            console.log( '%c IN BY AMOUNT', 'background: #fdd835; color: #000000' );
+            const crafts: CraftData[] = getAllCraftData();
+
+            const craftData = crafts.find( ( craft ) => {
+                return craft.outputs.includes( values.item );
+            } );
+
+            if ( craftData === undefined ) {
+                return;
+            }
+
+            const craft = findCraftByOutputPerMinute( values.item, craftData.outputs_per_min[ 0 ] * values.amount );
             console.log( craft );
             setCraft( craft );
         }
+        console.log( craft );
     }
 
     return (
@@ -236,86 +264,79 @@ export default function Home() {
     );
 }
 
-function findCraftByAmountOfMachine( item: string, nbRequiredMachine: number = 1 ): Result | null {
-    console.log( `NB Machine for ${ item }`, nbRequiredMachine );
-    const crafts: CraftData[] = require( '../data/assembler_mk1.json' );
+function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number ): Result | null {
+    console.log( `outputPerMinute needed for ${ item }: `, outputPerMinuteNeeded );
 
-    const craft = crafts.find( ( craft ) => craft.recipe === item );
+    const crafts: CraftData[] = getAllCraftData();
+
+    const craft = crafts.find( ( craft ) => {
+        return craft.outputs.includes( item );
+    } );
+
 
     if ( craft === undefined ) {
         return null;
     }
+    console.log( craft );
+    console.log( craft.outputs_per_min );
+
+    let nbRequiredMachine = 1;
+    for ( let i = 0; i < craft.outputs_per_min.length; i++ ) {
+        const outputPerMin = craft.outputs_per_min[ i ];
+        if ( Math.ceil( outputPerMinuteNeeded / outputPerMin ) > nbRequiredMachine ) {
+            nbRequiredMachine = Math.ceil( outputPerMinuteNeeded / outputPerMin );
+        }
+    }
+    console.log( `NB Machine for ${ item }`, nbRequiredMachine );
 
     const inputs: { name: string; amount_per_min: number; }[] = [];
-    const additionalCrafts: Result[] = [];
+    const additionalCrafts: Result[]                          = [];
 
-    for ( let i = 0; i < craft.required_inputs.length; i++ ) {
-        const input           = craft.required_inputs[ i ];
-        let amountPerMinInput = craft.amount_per_min_inputs[ i ];
+    for ( let i = 0; i < craft.inputs.length; i++ ) {
+        const input           = craft.inputs[ i ];
+        let amountPerMinInput = craft.inputs_per_min[ i ];
         amountPerMinInput *= nbRequiredMachine;
 
         inputs.push( { name: input, amount_per_min: amountPerMinInput } );
         console.log( `need ${ amountPerMinInput } ${ input } per minute` );
 
-        const additionalCraft = findCraftByAmountOfMachine( input, nbRequiredMachine );
+        const additionalCraft = findCraftByOutputPerMinute( input, amountPerMinInput );
 
         if ( additionalCraft ) {
-            console.log( `nbRequiredMachine for ${ item }`,
-                         Math.ceil( amountPerMinInput / additionalCraft.output_per_min ) );
-            additionalCraft.nb_required_machine = Math.ceil( amountPerMinInput / additionalCraft.output_per_min );
-
             additionalCrafts.push( additionalCraft );
         }
     }
 
+    const outputs: { name: string; amount_per_min: number; }[] = [];
+    for ( let i = 0; i < craft.outputs.length; i++ ) {
+        const output           = craft.outputs[ i ];
+        let amountPerMinOutput = craft.outputs_per_min[ i ];
+        amountPerMinOutput *= nbRequiredMachine;
+
+        outputs.push( { name: output, amount_per_min: amountPerMinOutput } );
+    }
+
     return {
-        recipe_name:         craft.recipe,
+        outputs: outputs,
         nb_required_machine: nbRequiredMachine,
-        output_per_min:      craft.amount_per_min,
         inputs,
         additional_crafts:   additionalCrafts,
     };
 }
 
-function findCraftByOutputPerMinute( item: string, outputPerMinute: number ): Result | null {
-    const crafts: CraftData[] = require( '../data/assembler_mk1.json' );
+function getAllItems(): ItemData[] {
+    const items = require( '../data/items.json' );
+    items.sort( ( a: ItemData, b: ItemData ) => {
+        return a.name.localeCompare( b.name );
+    } );
 
-    const craft = crafts.find( ( craft ) => craft.recipe === item );
+    return items;
+}
 
-    if ( craft === undefined ) {
-        return null;
-    }
+function getAllCraftData(): CraftData[] {
+    const assemblers = require( '../data/assembler_mk1.json' );
+    const threshers  = require( '../data/thresher_mk1.json' );
 
-    let nbRequiredMachine = Math.ceil( outputPerMinute / craft.amount_per_min );
-
-    const inputs: { name: string; amount_per_min: number; }[] = [];
-    const additionalCrafts: Result[]                          = [];
-
-    for ( let i = 0; i < craft.required_inputs.length; i++ ) {
-        const input           = craft.required_inputs[ i ];
-        let amountPerMinInput = craft.amount_per_min_inputs[ i ];
-        amountPerMinInput *= nbRequiredMachine;
-
-        inputs.push( { name: input, amount_per_min: amountPerMinInput } );
-        console.log( `need ${ amountPerMinInput } ${ input } per minute` );
-
-        const additionalCraft = findCraftByAmountOfMachine( input, nbRequiredMachine );
-
-        if ( additionalCraft ) {
-            console.log( `nbRequiredMachine for ${ item }`,
-                         Math.ceil( amountPerMinInput / additionalCraft.output_per_min ) );
-            additionalCraft.nb_required_machine = Math.ceil( amountPerMinInput / additionalCraft.output_per_min );
-
-            additionalCrafts.push( additionalCraft );
-        }
-    }
-
-    return {
-        recipe_name:         craft.recipe,
-        nb_required_machine: nbRequiredMachine,
-        output_per_min:      craft.amount_per_min,
-        inputs,
-        additional_crafts:   additionalCrafts,
-    };
+    return [ ...assemblers, ...threshers ];
 }
 

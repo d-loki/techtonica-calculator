@@ -1,755 +1,987 @@
 [
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Accumulator",
-        "amount_per_min":        2.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Accumulator"
+        ],
+        "outputs_per_min": [
+            2.5
+        ],
+        "inputs":          [
             "Copper_Frame",
             "Electrical_Components",
             "Kindlevine_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             25.0,
             25.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Assembler",
-        "amount_per_min":        7.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Assembler"
+        ],
+        "outputs_per_min": [
+            7.5
+        ],
+        "inputs":          [
             "Copper_Wire",
             "Mechanical_Components",
             "Kindlevine_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             60.0,
             75.0,
             75.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Atlantum_Mixture",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Atlantum_Mixture"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Atlantum_Power",
             "Kindlevine_Extract",
             "Shiverthorn_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             15.0,
             15.0,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Beacon",
-        "amount_per_min":        7.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Beacon"
+        ],
+        "outputs_per_min": [
+            7.5
+        ],
+        "inputs":          [
             "Electrical_Components",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Biobrick",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Biobrick"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Plantmatter",
             "Limestone"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             75.0,
             150.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Ceiling_Plant_(1x1)",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Ceiling_Plant_(1x1)"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0,
             20.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Ceiling_Plant_(3x3)",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Ceiling_Plant_(3x3)"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0,
             20.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Container",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Container"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Components",
             "Iron_Brick"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             40.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Conveyer_Belt_MK1",
-        "amount_per_min":        150.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Conveyer_Belt_MK1"
+        ],
+        "outputs_per_min": [
+            150.0
+        ],
+        "inputs":          [
             "Mechanical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Conveyer_Belt_MK2",
-        "amount_per_min":        150.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Conveyer_Belt_MK2"
+        ],
+        "outputs_per_min": [
+            150.0
+        ],
+        "inputs":          [
             "Conveyer_Belt_MK1",
             "Copper_Components",
             "Shiverthorn_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             150.0,
             75.0,
             75.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Cooling_System",
-        "amount_per_min":        7.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Cooling_System"
+        ],
+        "outputs_per_min": [
+            7.5
+        ],
+        "inputs":          [
             "Mechanical_Components",
             "Shiverthorn_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             7.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Copper_Components",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Copper_Components"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Copper_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Copper_Frame",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Copper_Frame"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Copper_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Copper_Wire",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Copper_Wire"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Copper_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             2.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Core_Composer",
-        "amount_per_min":        0.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Core_Composer"
+        ],
+        "outputs_per_min": [
+            0.5
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Mechanical_Components",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             5.0,
             2.5,
             12.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Crank_Generator",
-        "amount_per_min":        1.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Crank_Generator"
+        ],
+        "outputs_per_min": [
+            1.0
+        ],
+        "inputs":          [
             "Copper_Components",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             5.0,
             5.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Dirt",
-        "amount_per_min":        200.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Dirt"
+        ],
+        "outputs_per_min": [
+            200.0
+        ],
+        "inputs":          [
             "Plantmatter"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             400.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Dirt_(Alt.)",
-        "amount_per_min":        240.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Dirt_(Alt.)"
+        ],
+        "outputs_per_min": [
+            240.0
+        ],
+        "inputs":          [
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             1440.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Electrical_Components",
-        "amount_per_min":        20.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Electrical_Components"
+        ],
+        "outputs_per_min": [
+            20.0
+        ],
+        "inputs":          [
             "Iron_Ingot",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0,
             20.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Fast_Inserter",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Fast_Inserter"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Inserter",
             "Processor_Unit",
             "Kindlevine_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             15.0,
             150.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Filter_Inserter",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Filter_Inserter"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Inserter",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             60.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "High_Voltage_Cable",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "High_Voltage_Cable"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Plantmatter_Frame",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Hover_Pack",
-        "amount_per_min":        6.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Hover_Pack"
+        ],
+        "outputs_per_min": [
+            6.0
+        ],
+        "inputs":          [
             "Mechanical_Components",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Inserter",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Inserter"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Mechanical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Iron_Components",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Iron_Components"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Iron_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Iron_Frame",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Iron_Frame"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Kindlevine_Stems_(Washed)",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Kindlevine_Stems_(Washed)"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Kindlevine_Stems",
             "Shiverthorn_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             60.0,
             180.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Light_Stick",
-        "amount_per_min":        20.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Light_Stick"
+        ],
+        "outputs_per_min": [
+            20.0
+        ],
+        "inputs":          [
             "Plantmatter_Frame",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             5.0,
             5.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Limestone_Brick",
-        "amount_per_min":        1.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Limestone_Brick"
+        ],
+        "outputs_per_min": [
+            1.5
+        ],
+        "inputs":          [
             "Limestone"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             375.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Long_Inserter",
-        "amount_per_min":        20.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Long_Inserter"
+        ],
+        "outputs_per_min": [
+            20.0
+        ],
+        "inputs":          [
             "Inserter",
             "Mechanical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             20.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Mechanical_Components",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Mechanical_Components"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Copper_Ingot",
             "Iron_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Metal_Stairs_(1x1)",
-        "amount_per_min":        150.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Metal_Stairs_(1x1)"
+        ],
+        "outputs_per_min": [
+            150.0
+        ],
+        "inputs":          [
             "Iron_Ingot",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Mining_Charge",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Mining_Charge"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Plantmatter_Fiber",
             "Shiverthorn_Extract",
             "Kindlevine_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             15.0,
             15.0,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Mining_Drill",
-        "amount_per_min":        5.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Mining_Drill"
+        ],
+        "outputs_per_min": [
+            5.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Iron_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             50.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Omniseeker",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Omniseeker"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Processor_Unit",
             "Scanner",
             "Iron_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             60.0,
             30.0,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Overhead_Light",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Overhead_Light"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Plantmatter_Frame",
             "Copper_Wire",
             "Kindlevine_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             5.0,
             5.0,
             25.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Planter",
-        "amount_per_min":        7.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Planter"
+        ],
+        "outputs_per_min": [
+            7.5
+        ],
+        "inputs":          [
             "Iron_Components",
             "Electrical_Components",
             "Dirt"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             7.5,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Plantmatter",
-        "amount_per_min":        40.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Plantmatter"
+        ],
+        "outputs_per_min": [
+            40.0
+        ],
+        "inputs":          [
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             60.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Plantmatter_Brick",
-        "amount_per_min":        2.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Plantmatter_Brick"
+        ],
+        "outputs_per_min": [
+            2.5
+        ],
+        "inputs":          [
             "Kindlevine_Stems_(Washed)"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             62.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Plantmatter_Fiber",
-        "amount_per_min":        12.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Plantmatter_Fiber"
+        ],
+        "outputs_per_min": [
+            12.0
+        ],
+        "inputs":          [
             "Plantmatter"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Plantmatter_Frame",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Plantmatter_Frame"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             60.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Plantmatter_Frame_(Alt.)",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Plantmatter_Frame_(Alt.)"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Kindlevine_Stems"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             12.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Power_Floor",
-        "amount_per_min":        150.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Power_Floor"
+        ],
+        "outputs_per_min": [
+            150.0
+        ],
+        "inputs":          [
             "Iron_Ingot",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             15.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Processor_Unit",
-        "amount_per_min":        30.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Processor_Unit"
+        ],
+        "outputs_per_min": [
+            30.0
+        ],
+        "inputs":          [
             "Electrical_Components",
             "Plantmatter_Frame"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Replacer",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Replacer"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Copper_Frame",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             187.5,
             75.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Research_Core_380_NM_(Purple)",
-        "amount_per_min":        7.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Research_Core_380_NM_(Purple)"
+        ],
+        "outputs_per_min": [
+            7.5
+        ],
+        "inputs":          [
             "Copper_Wire",
             "Mechanical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             15.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Research_Core_480_NM_(Blue)",
-        "amount_per_min":        2.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Research_Core_480_NM_(Blue)"
+        ],
+        "outputs_per_min": [
+            2.5
+        ],
+        "inputs":          [
             "Researach_Core_380_NM_(Purple)",
             "Processor_Unit",
             "Cooling_System"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             15.0,
             15.0,
             7.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Scanner",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Scanner"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Copper_Frame",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             7.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Shiverthorn_Coolant",
-        "amount_per_min":        15.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Shiverthorn_Coolant"
+        ],
+        "outputs_per_min": [
+            15.0
+        ],
+        "inputs":          [
             "Iron_Components",
             "Shiverthorn_Extract",
             "Limestone"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             7.5,
             15.0,
             60.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Smelter",
-        "amount_per_min":        7.5,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Smelter"
+        ],
+        "outputs_per_min": [
+            7.5
+        ],
+        "inputs":          [
             "Limestone",
             "Copper_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             60.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Standard_Pickaxe",
-        "amount_per_min":        6.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Standard_Pickaxe"
+        ],
+        "outputs_per_min": [
+            6.0
+        ],
+        "inputs":          [
             "Iron_Ingot"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             6.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Standing_Lamp_(1x5)",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Standing_Lamp_(1x5)"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Components",
             "Electrical_Components",
             "Kindlevine_Extract"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0,
             10.0,
             10.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "The_M.O.L.E.",
-        "amount_per_min":        6.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "The_M.O.L.E."
+        ],
+        "outputs_per_min": [
+            6.0
+        ],
+        "inputs":          [
             "Mechanical_Components",
             "Electrical_Components",
             "Copper_Wire"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             30.0,
             42.0,
             30.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Thresher",
-        "amount_per_min":        1.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Thresher"
+        ],
+        "outputs_per_min": [
+            1.0
+        ],
+        "inputs":          [
             "Mechanical_Components",
             "Copper_Frame",
             "Iron_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             2.5,
             2.5,
             2.5
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Voltage_Stepper",
-        "amount_per_min":        1.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Voltage_Stepper"
+        ],
+        "outputs_per_min": [
+            1.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Accumulator",
             "Processor_Unit"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             1.0,
             1.0,
             1.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Wall_Plant_(1x1)",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Wall_Plant_(1x1)"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0,
             20.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Wall_Plant_(3x3)",
-        "amount_per_min":        10.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Wall_Plant_(3x3)"
+        ],
+        "outputs_per_min": [
+            10.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Plantmatter_Fiber"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             10.0,
             20.0
         ]
     },
     {
-        "upgrade_Level":         "100%",
-        "recipe":                "Water_Wheel",
-        "amount_per_min":        1.0,
-        "required_inputs":       [
+        "efficiency":      "100%",
+        "outputs":         [
+            "Water_Wheel"
+        ],
+        "outputs_per_min": [
+            1.0
+        ],
+        "inputs":          [
             "Iron_Frame",
             "Mechanical_Components",
             "Electrical_Components"
         ],
-        "amount_per_min_inputs": [
+        "inputs_per_min":  [
             15.0,
             5.0,
             5.0

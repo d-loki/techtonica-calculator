@@ -30,11 +30,11 @@ with open(html_file_path, 'r') as file:
         cells = row.find_all('td')
         # Création d'un dictionnaire pour stocker les données de chaque ligne
         entry = {
-            "upgrade_Level": cells[0].get_text().strip(),
-            "recipe": replace_spaces_with_underscores(cells[1].get_text().strip()),
-            "amount_per_min": float(cells[2].get_text().strip()),
-            "required_inputs": [replace_spaces_with_underscores(value.strip()) for value in cells[3].get_text().strip().split(",")],
-            "amount_per_min_inputs": [float(value.strip()) for value in cells[4].get_text().strip().split(",")]
+            "efficiency": cells[0].get_text().strip(),
+            "outputs": [replace_spaces_with_underscores(cells[1].get_text().strip())],
+            "outputs_per_min": [float(cells[2].get_text().strip())],
+            "inputs": [replace_spaces_with_underscores(value.strip()) for value in cells[3].get_text().strip().split(",")],
+            "inputs_per_min": [float(value.strip()) for value in cells[4].get_text().strip().split(",")]
                 }
         # Ajout de la ligne au JSON
         data.append(entry)
