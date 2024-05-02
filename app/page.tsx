@@ -24,6 +24,7 @@ type ItemData = {
 
 type FormSchema = {
     item: string;
+    efficiency: number;
     amount: number;
     output: number;
     type: 'by_amount' | 'by_output'
@@ -118,10 +119,11 @@ export default function Home() {
     const items: ItemData[] = getAllItems();
     const form              = useForm<FormSchema>( {
                                                        defaultValues: {
-                                                           item:   'Conveyer_Belt_MK2',
-                                                           amount: 1,
-                                                           output: 0,
-                                                           type: 'by_output',
+                                                           item:       'Conveyer_Belt_MK2',
+                                                           efficiency: 100,
+                                                           amount:     1,
+                                                           output:     0,
+                                                           type:       'by_output',
                                                        },
                                                    } );
 
@@ -131,7 +133,7 @@ export default function Home() {
     // 2. Define a submit handler.
     function onSubmit( values: FormSchema ) {
         if ( type === 'by_output' ) {
-            const craft = findCraftByOutputPerMinute( values.item, values.output );
+            const craft = findCraftByOutputPerMinute( values.item, values.output, values.efficiency );
             console.log( craft );
             setCraft( craft );
         } else if ( type === 'by_amount' ) {
@@ -146,7 +148,9 @@ export default function Home() {
                 return;
             }
 
-            const craft = findCraftByOutputPerMinute( values.item, craftData.outputs_per_min[ 0 ] * values.amount );
+            const craft = findCraftByOutputPerMinute( values.item,
+                                                      craftData.outputs_per_min[ 0 ] * values.amount,
+                                                      values.efficiency );
             console.log( craft );
             setCraft( craft );
         }
@@ -184,6 +188,19 @@ export default function Home() {
                                                 }
                                             </SelectContent>
                                         </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                ) }
+                            />
+                            <FormField
+                                control={ form.control }
+                                name="efficiency"
+                                render={ ( { field } ) => (
+                                    <FormItem>
+                                        <FormLabel>Efficiency in %</FormLabel>
+                                        <FormControl>
+                                            <Input type="number" placeholder="100" { ...field } />
+                                        </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 ) }
@@ -264,7 +281,7 @@ export default function Home() {
     );
 }
 
-function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number ): Result | null {
+function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number, efficiency: number ): Result | null {
     console.log( `outputPerMinute needed for ${ item }: `, outputPerMinuteNeeded );
 
     const crafts: CraftData[] = getAllCraftData();
@@ -277,12 +294,12 @@ function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number
     if ( craft === undefined ) {
         return null;
     }
-    console.log( craft );
-    console.log( craft.outputs_per_min );
+
+    const ratio = efficiency / 100;
 
     let nbRequiredMachine = 1;
     for ( let i = 0; i < craft.outputs_per_min.length; i++ ) {
-        const outputPerMin = craft.outputs_per_min[ i ];
+        const outputPerMin = craft.outputs_per_min[ i ] * ratio;
         if ( Math.ceil( outputPerMinuteNeeded / outputPerMin ) > nbRequiredMachine ) {
             nbRequiredMachine = Math.ceil( outputPerMinuteNeeded / outputPerMin );
         }
@@ -300,7 +317,7 @@ function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number
         inputs.push( { name: input, amount_per_min: amountPerMinInput } );
         console.log( `need ${ amountPerMinInput } ${ input } per minute` );
 
-        const additionalCraft = findCraftByOutputPerMinute( input, amountPerMinInput );
+        const additionalCraft = findCraftByOutputPerMinute( input, amountPerMinInput, efficiency );
 
         if ( additionalCraft ) {
             additionalCrafts.push( additionalCraft );
@@ -310,7 +327,7 @@ function findCraftByOutputPerMinute( item: string, outputPerMinuteNeeded: number
     const outputs: { name: string; amount_per_min: number; }[] = [];
     for ( let i = 0; i < craft.outputs.length; i++ ) {
         const output           = craft.outputs[ i ];
-        let amountPerMinOutput = craft.outputs_per_min[ i ];
+        let amountPerMinOutput = craft.outputs_per_min[ i ] * ratio;
         amountPerMinOutput *= nbRequiredMachine;
 
         outputs.push( { name: output, amount_per_min: amountPerMinOutput } );
