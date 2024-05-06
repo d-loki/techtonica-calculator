@@ -11,6 +11,7 @@ import requests
 # Use Pillow to convert the Python object to an RGB image
 from PIL import Image
 from bs4 import BeautifulSoup
+import json
 
 
 def get_items_data():
@@ -25,6 +26,10 @@ def get_items_data():
 
     # Extraction des données
     data = str(data[script_index])
+
+    # Save the data to a file
+    with open("../raw_data/items.txt", "w") as f:
+        f.write(data)
 
     return data
 
@@ -69,13 +74,45 @@ def get_items_image():
     return
 
 
+def extract_items_json():
+    url = "https://www.techtonica-calculator.com/seiten/Items.php"
+
+    req = requests.get(url)
+    soup = BeautifulSoup(req.text, 'html.parser')
+    results = []
+
+    for div in soup.findAll('div',
+                            class_ = 'p2px m2l zentrieren rad10 backcolor_tiefdunkelblau color_orange border_blau s05'
+                            ):
+        a = div.find('a')
+        href = a.get('href')
+        item_id = href.split('=')[1]
+
+        text = a.get_text()
+        clear_text = text.replace("\n", "").replace("\t", "").replace("\r", "").strip()
+        print(clear_text)
+        results.append({
+                "id"  : item_id,
+                "name": clear_text
+        }
+        )
+
+    # Chemin du fichier JSON de sortie
+    output_json_path = "../dist/items.json"
+
+    # Écriture des données dans le fichier JSON
+    with open(output_json_path, "w") as json_file:
+        json.dump(results, json_file, indent = 4)
+
+
 def run_scraping():
-    get_items_data()
-    get_items_image()
+    # get_items_data()
+    extract_items_json()
+    # get_items_image()
 
 
 def get_raw_items():
-    with open("../raw_data/items.txt", "r") as f:
+    with open("../raw_data/items-old.txt", "r") as f:
         data = f.read()
 
     return data

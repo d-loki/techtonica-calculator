@@ -38,6 +38,7 @@ def extract_data_from_php(php_code):
 
 def extract_data():
     # Extraction des données
+    print("Extracting craft data...")
     data = extract_data_from_php(get_raw_items())
 
     # Chemin du fichier JSON de sortie

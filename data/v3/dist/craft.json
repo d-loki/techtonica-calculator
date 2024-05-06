@@ -1,0 +1,3442 @@
+[
+    {
+        "id":          "Accumulator_1",
+        "output":      "Accumulator",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Frame",
+                "quantity": "6"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "20"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Assembler_1",
+        "output":      "Advanced_Assembler",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Motor",
+                "quantity": "2"
+            },
+            {
+                "item":     "Assembler",
+                "quantity": "2"
+            },
+            {
+                "item":     "Relay_Circuit",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Circuit_1",
+        "output":      "Advanced_Circuit",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Processor_Unit",
+                "quantity": "1"
+            },
+            {
+                "item":     "Atlantum_Ingot",
+                "quantity": "2"
+            },
+            {
+                "item":     "Cooling_System",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Conveyor_Belt_1",
+        "output":      "Advanced_Conveyor_Belt",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Conveyor_Belt",
+                "quantity": "10"
+            },
+            {
+                "item":     "Copper_Component",
+                "quantity": "5"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Conveyor_Belt_2_1",
+        "output":      "Advanced_Conveyor_Belt_2",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Electric_Motor",
+                "quantity": "1"
+            },
+            {
+                "item":     "Advanced_Conveyor_Belt",
+                "quantity": "10"
+            },
+            {
+                "item":     "Atlantum_Ingot",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Mining_Drill_1",
+        "output":      "Advanced_Mining_Drill",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "20"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "16"
+            },
+            {
+                "item":     "Mining_Drill",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Smelter_1",
+        "output":      "Advanced_Smelter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Smelter",
+                "quantity": "4"
+            },
+            {
+                "item":     "Relay_Circuit",
+                "quantity": "2"
+            },
+            {
+                "item":     "Ceramic_Tiles",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Thresher_1",
+        "output":      "Advanced_Thresher",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Motor",
+                "quantity": "2"
+            },
+            {
+                "item":     "Relay_Circuit",
+                "quantity": "2"
+            },
+            {
+                "item":     "Thresher",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Assembler_1",
+        "output":      "Assembler",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "20"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "16"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Ingot_1",
+        "output":      "Atlantum_Ingot",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Mixture",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Atlantum_Mixture_1",
+        "output":      "Atlantum_Mixture",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Powder",
+                "quantity": "2"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Mixture_Brick_1",
+        "output":      "Atlantum_Mixture_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Extract_Gel",
+                "quantity": "2"
+            },
+            {
+                "item":     "Kindlevine_Extract_Brick",
+                "quantity": "1"
+            },
+            {
+                "item":     "Atlantum_Powder_Brick",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Powder_Brick_1",
+        "output":      "Atlantum_Powder_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Powder",
+                "quantity": "500"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Slab_1",
+        "output":      "Atlantum_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Chunk",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Beacon_1",
+        "output":      "Beacon",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Wire",
+                "quantity": "4"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Biobrick_1",
+        "output":      "Biobrick",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Plantmatter",
+                "quantity": "25"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "50"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Blast_Drill_1",
+        "output":      "Blast_Drill",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mining_Drill",
+                "quantity": "2"
+            },
+            {
+                "item":     "Reinforced_Copper_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Reinforced_Iron_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "10.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Blast_Smelter_1",
+        "output":      "Blast_Smelter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Smelter",
+                "quantity": "2"
+            },
+            {
+                "item":     "Steel_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Ceramic_Tiles",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Blue_Core_1",
+        "output":      "Blue_Core",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Cooling_System",
+                "quantity": "6"
+            },
+            {
+                "item":     "Processor_Unit",
+                "quantity": "12"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Blue_Light_Stick_1",
+        "output":      "Blue_Light_Stick",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "2"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Angle_Support_33_1",
+        "output":      "Calycite_Angle_Support_33",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Beam_31_1",
+        "output":      "Calycite_Beam_31",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Beam_51_1",
+        "output":      "Calycite_Beam_51",
+        "quantity":    "20",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Concrete",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Gate_105_1",
+        "output":      "Calycite_Gate_105",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            },
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Gate_52_1",
+        "output":      "Calycite_Gate_52",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Cement",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Gate_55_1",
+        "output":      "Calycite_Gate_55",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            },
+            {
+                "item":     "Steel_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Pillar_11_1",
+        "output":      "Calycite_Pillar_11",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Cement",
+                "quantity": "5"
+            },
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Pillar_13_1",
+        "output":      "Calycite_Pillar_13",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "10"
+            },
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Pillar_15_1",
+        "output":      "Calycite_Pillar_15",
+        "quantity":    "20",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "20"
+            },
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Platform_11_1",
+        "output":      "Calycite_Platform_11",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "5"
+            },
+            {
+                "item":     "Cement",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Platform_33_1",
+        "output":      "Calycite_Platform_33",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Cement",
+                "quantity": "10"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Platform_55_1",
+        "output":      "Calycite_Platform_55",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Vertical_Wall_Cap_31_1",
+        "output":      "Calycite_Vertical_Wall_Cap_31",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Vertical_Wall_Cap_51_1",
+        "output":      "Calycite_Vertical_Wall_Cap_51",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_33_1",
+        "output":      "Calycite_Wall_33",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Cement",
+                "quantity": "10"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_53_1",
+        "output":      "Calycite_Wall_53",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            },
+            {
+                "item":     "Steel_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_55_1",
+        "output":      "Calycite_Wall_55",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            },
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Cap_31_1",
+        "output":      "Calycite_Wall_Cap_31",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Cap_51_1",
+        "output":      "Calycite_Wall_Cap_51",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Corner_11_1",
+        "output":      "Calycite_Wall_Corner_11",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Cutaway_22_1",
+        "output":      "Calycite_Wall_Cutaway_22",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            },
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Cutaway_33_1",
+        "output":      "Calycite_Wall_Cutaway_33",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Concrete",
+                "quantity": "15"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Cutaway_53_1",
+        "output":      "Calycite_Wall_Cutaway_53",
+        "quantity":    "20",
+        "inputs":      [
+            {
+                "item":     "Concrete",
+                "quantity": "20"
+            },
+            {
+                "item":     "Steel_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Calycite_Wall_Cutaway_55_1",
+        "output":      "Calycite_Wall_Cutaway_55",
+        "quantity":    "20",
+        "inputs":      [
+            {
+                "item":     "Steel_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Concrete",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Carbon_Powder_1",
+        "output":      "Carbon_Powder",
+        "quantity":    "60",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Brick",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Carbon_Powder_Brick_1",
+        "output":      "Carbon_Powder_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Carbon_Powder",
+                "quantity": "500"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Catwalk_39_1",
+        "output":      "Catwalk_39",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "10"
+            },
+            {
+                "item":     "Steel_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Catwalk_59_1",
+        "output":      "Catwalk_59",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Steel_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Ceiling_Plant_11_1",
+        "output":      "Ceiling_Plant_11",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "0.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Ceiling_Plant_33_1",
+        "output":      "Ceiling_Plant_33",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "4"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "0.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Cement_1",
+        "output":      "Cement",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Quicklime",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "0.75",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Ceramic_Parts_1",
+        "output":      "Ceramic_Parts",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Clay",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "12.5",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Ceramic_Tiles_1",
+        "output":      "Ceramic_Tiles",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Ceramic_Parts",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Clay_1",
+        "output":      "Clay",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Soil",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Concrete_1",
+        "output":      "Concrete",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Cement",
+                "quantity": "1"
+            },
+            {
+                "item":     "Gravel",
+                "quantity": "3"
+            }
+        ],
+        "base_time":   "0.75",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Container_1",
+        "output":      "Container",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Component",
+                "quantity": "8"
+            },
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Conveyor_Belt_1",
+        "output":      "Conveyor_Belt",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Cooling_System_1",
+        "output":      "Cooling_System",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "2"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Copper_Component_1",
+        "output":      "Copper_Component",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Copper_Frame_1",
+        "output":      "Copper_Frame",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Copper_Ingot_1",
+        "output":      "Copper_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ore",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Copper_Mechanism_1",
+        "output":      "Copper_Mechanism",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Component",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Copper_Slab_1",
+        "output":      "Copper_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Refined_Copper_Chunk",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Copper_Wire_1",
+        "output":      "Copper_Wire",
+        "quantity":    "3",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Core_Composer_1",
+        "output":      "Core_Composer",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "50"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "20"
+            },
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Crank_Generator_1",
+        "output":      "Crank_Generator",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "10"
+            },
+            {
+                "item":     "Copper_Component",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Crank_Generator_MKII_1",
+        "output":      "Crank_Generator_MKII",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Crank_Generator",
+                "quantity": "8"
+            },
+            {
+                "item":     "Electric_Motor",
+                "quantity": "4"
+            },
+            {
+                "item":     "Relay_Circuit",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Decorative_Concrete_1",
+        "output":      "Decorative_Concrete",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Sand",
+                "quantity": "3"
+            },
+            {
+                "item":     "Cement",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "0.75",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Electric_Component_1",
+        "output":      "Electric_Component",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Copper_Wire",
+                "quantity": "4"
+            },
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Electric_Frame_1",
+        "output":      "Electric_Frame",
+        "quantity":    "4",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Copper_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Wire_Spindle",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Electric_Motor_1",
+        "output":      "Electric_Motor",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "4"
+            },
+            {
+                "item":     "Electric_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Ceramic_Parts",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Electrical_Set_1",
+        "output":      "Electrical_Set",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Fan_Lamp_1",
+        "output":      "Fan_Lamp",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "3"
+            },
+            {
+                "item":     "Glass",
+                "quantity": "4"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Fast_Inserter_1",
+        "output":      "Fast_Inserter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Inserter",
+                "quantity": "2"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "10"
+            },
+            {
+                "item":     "Processor_Unit",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Filter_Inserter_1",
+        "output":      "Filter_Inserter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Inserter",
+                "quantity": "2"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Gearbox_1",
+        "output":      "Gearbox",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Glass_1",
+        "output":      "Glass",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Sand",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Green_Light_Stick_1",
+        "output":      "Green_Light_Stick",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "2"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Hanging_Lamp_1",
+        "output":      "Hanging_Lamp",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "1"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Hover_Pack_1",
+        "output":      "Hover_Pack",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "10"
+            },
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "HVC_1",
+        "output":      "HVC",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "4"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Infused_Atlantum_1",
+        "output":      "Infused_Atlantum",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Powder",
+                "quantity": "5"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "24"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Infused_Copper_1",
+        "output":      "Infused_Copper",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ore_Powder",
+                "quantity": "3"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "20"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Infused_Iron_1",
+        "output":      "Infused_Iron",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ore_Powder",
+                "quantity": "3"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "20"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Inserter_1",
+        "output":      "Inserter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Component_1",
+        "output":      "Iron_Component",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Frame_1",
+        "output":      "Iron_Frame",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Ingot_1",
+        "output":      "Iron_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ore",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Iron_Mechanism_1",
+        "output":      "Iron_Mechanism",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Component",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Pickaxe_1",
+        "output":      "Iron_Pickaxe",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Slab_1",
+        "output":      "Iron_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Refined_Iron_Chunk",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Kindlevine_1",
+        "output":      "Kindlevine",
+        "quantity":    "4",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Seed",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "120.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Kindlevine_Extract_Brick_1",
+        "output":      "Kindlevine_Extract_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "500"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Kindlevine_Stems_Washed_1",
+        "output":      "Kindlevine_Stems_Washed",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "12"
+            },
+            {
+                "item":     "Kindlevine_Stems",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Light_Stick_1",
+        "output":      "Light_Stick",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Copper_Wire",
+                "quantity": "1"
+            },
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Limestone_1",
+        "output":      "Limestone",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "0.75",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Long_Inserter_1",
+        "output":      "Long_Inserter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Inserter",
+                "quantity": "2"
+            },
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "3"
+            }
+        ],
+        "base_time":   "1.5",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Mechanical_Component_1",
+        "output":      "Mechanical_Component",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "4"
+            },
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Medium_Floor_Pot_1",
+        "output":      "Medium_Floor_Pot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Decorative_Concrete",
+                "quantity": "4"
+            },
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Angle_Support_1",
+        "output":      "Metal_Angle_Support",
+        "quantity":    "20",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "20"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Beam_11_1",
+        "output":      "Metal_Beam_11",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "5"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Beam_13_1",
+        "output":      "Metal_Beam_13",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "15"
+            },
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Beam_15_1",
+        "output":      "Metal_Beam_15",
+        "quantity":    "20",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Pillar_11_1",
+        "output":      "Metal_Pillar_11",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "5"
+            },
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Pillar_13_1",
+        "output":      "Metal_Pillar_13",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Copper_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Pillar_15_1",
+        "output":      "Metal_Pillar_15",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "15"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Rib_Base_12_1",
+        "output":      "Metal_Rib_Base_12",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Copper_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "15"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Rib_Middle_13_1",
+        "output":      "Metal_Rib_Middle_13",
+        "quantity":    "15",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "15"
+            },
+            {
+                "item":     "Copper_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Stairs_31_1",
+        "output":      "Metal_Stairs_31",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "5"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Metal_Stairs_33_1",
+        "output":      "Metal_Stairs_33",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "10"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Mining_Charge_1",
+        "output":      "Mining_Charge",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Mining_Drill_1",
+        "output":      "Mining_Drill",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "3"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "MOLE_1",
+        "output":      "MOLE",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "14"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "10"
+            },
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Monorail_Depot_1",
+        "output":      "Monorail_Depot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Accumulator",
+                "quantity": "4"
+            },
+            {
+                "item":     "Cooling_System",
+                "quantity": "8"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "16"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Monorail_Pole_1",
+        "output":      "Monorail_Pole",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Component",
+                "quantity": "2"
+            },
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Monorail_Track_1",
+        "output":      "Monorail_Track",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "4"
+            },
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "5"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Omniseeker_1",
+        "output":      "Omniseeker",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Component",
+                "quantity": "1"
+            },
+            {
+                "item":     "Processor_Unit",
+                "quantity": "4"
+            },
+            {
+                "item":     "Scanner",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Overhead_Light_1",
+        "output":      "Overhead_Light",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "5"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Planter_1",
+        "output":      "Planter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Soil",
+                "quantity": "8"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "2"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Plantmatter_1",
+        "output":      "Plantmatter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "3"
+            }
+        ],
+        "base_time":   "0.75",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Plantmatter_Brick_1",
+        "output":      "Plantmatter_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "20.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Plantmatter_Frame_1",
+        "output":      "Plantmatter_Frame",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Power_Floor_1",
+        "output":      "Power_Floor",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "2"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Processor_Array_1",
+        "output":      "Processor_Array",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Processor_Unit",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Processor_Unit_1",
+        "output":      "Processor_Unit",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "4"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Purple_Core_1",
+        "output":      "Purple_Core",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Wire",
+                "quantity": "4"
+            },
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Quicklime_1",
+        "output":      "Quicklime",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Limestone",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Railing_11_1",
+        "output":      "Railing_11",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "1"
+            },
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Railing_31_1",
+        "output":      "Railing_31",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Railing_51_1",
+        "output":      "Railing_51",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "4"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Railing_Corner_11_1",
+        "output":      "Railing_Corner_11",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "5"
+            },
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Railing_Corner_33_1",
+        "output":      "Railing_Corner_33",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "4"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Railrunner_1",
+        "output":      "Railrunner",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Ingot",
+                "quantity": "15"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "4"
+            },
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "10.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Red_Light_Stick_1",
+        "output":      "Red_Light_Stick",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "1"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "1"
+            },
+            {
+                "item":     "Copper_Wire",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Refined_Copper_Chunk_1",
+        "output":      "Refined_Copper_Chunk",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Copper_Chunk",
+                "quantity": "10"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Refined_Iron_Chunk_1",
+        "output":      "Refined_Iron_Chunk",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Iron_Chunk",
+                "quantity": "10"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Reinforced_Copper_Frame_1",
+        "output":      "Reinforced_Copper_Frame",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Frame",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Reinforced_Iron_Frame_1",
+        "output":      "Reinforced_Iron_Frame",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Relay_Circuit_1",
+        "output":      "Relay_Circuit",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Advanced_Circuit",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Replacer_1",
+        "output":      "Replacer",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Frame",
+                "quantity": "25"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Scanner_1",
+        "output":      "Scanner",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Electric_Component",
+                "quantity": "1"
+            },
+            {
+                "item":     "Copper_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Shiverthorn_1",
+        "output":      "Shiverthorn",
+        "quantity":    "4",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Seed",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "120.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Shiverthorn_Buds_Neutralized_1",
+        "output":      "Shiverthorn_Buds_Neutralized",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Buds",
+                "quantity": "4"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "12"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Shiverthorn_Coolant_1",
+        "output":      "Shiverthorn_Coolant",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "8"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Shiverthorn_Extract_Gel_1",
+        "output":      "Shiverthorn_Extract_Gel",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Small_Floor_Pot_1",
+        "output":      "Small_Floor_Pot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "1"
+            },
+            {
+                "item":     "Decorative_Concrete",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Smelter_1",
+        "output":      "Smelter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Component",
+                "quantity": "8"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "16"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Soil_1",
+        "output":      "Soil",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Plantmatter",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "0.75",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Stack_Filter_Inserter_1",
+        "output":      "Stack_Filter_Inserter",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Stack_Inserter",
+                "quantity": "2"
+            },
+            {
+                "item":     "Advanced_Circuit",
+                "quantity": "4"
+            },
+            {
+                "item":     "Filter_Inserter",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Stack_Inserter_1",
+        "output":      "Stack_Inserter",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Fast_Inserter",
+                "quantity": "8"
+            },
+            {
+                "item":     "Electric_Motor",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Stairs_1",
+        "output":      "Stairs",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "1"
+            },
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Standing_Lamp_1",
+        "output":      "Standing_Lamp",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "2"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Steel_Frame_1",
+        "output":      "Steel_Frame",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Steel_Ingot_1",
+        "output":      "Steel_Ingot",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Steel_Mixture_1",
+        "output":      "Steel_Mixture",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Iron_Ore_Powder",
+                "quantity": "10"
+            },
+            {
+                "item":     "Carbon_Powder",
+                "quantity": "10"
+            },
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Steel_Slab_1",
+        "output":      "Steel_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Steel_Mixture",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Thresher_1",
+        "output":      "Thresher",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "5"
+            },
+            {
+                "item":     "Copper_Frame",
+                "quantity": "5"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Voltage_Stepper_1",
+        "output":      "Voltage_Stepper",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Accumulator",
+                "quantity": "2"
+            },
+            {
+                "item":     "Processor_Unit",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wall_Light_11_1",
+        "output":      "Wall_Light_11",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Component",
+                "quantity": "1"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "1"
+            },
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wall_Light_31_1",
+        "output":      "Wall_Light_31",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "2"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "2"
+            },
+            {
+                "item":     "Iron_Component",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wall_Plant_11_1",
+        "output":      "Wall_Plant_11",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "2"
+            },
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "0.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wall_Plant_33_1",
+        "output":      "Wall_Plant_33",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "4"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "0.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wall_Pot_1",
+        "output":      "Wall_Pot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Decorative_Concrete",
+                "quantity": "2"
+            },
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Water_Wheel_1",
+        "output":      "Water_Wheel",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "10"
+            },
+            {
+                "item":     "Iron_Frame",
+                "quantity": "30"
+            },
+            {
+                "item":     "Electric_Component",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wire_Spindle_1",
+        "output":      "Wire_Spindle",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Wire",
+                "quantity": "100"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Advanced_Conveyor_Belt_2",
+        "output":      "Advanced_Conveyor_Belt",
+        "quantity":    "50",
+        "inputs":      [
+            {
+                "item":     "Shiverthorn_Extract_Gel",
+                "quantity": "1"
+            },
+            {
+                "item":     "Conveyor_Belt",
+                "quantity": "100"
+            },
+            {
+                "item":     "Copper_Mechanism",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Slab_2",
+        "output":      "Atlantum_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Biobrick_2",
+        "output":      "Biobrick",
+        "quantity":    "250",
+        "inputs":      [
+            {
+                "item":     "Limestone_Brick",
+                "quantity": "10"
+            },
+            {
+                "item":     "Plantmatter_Brick",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Carbon_Powder_2",
+        "output":      "Carbon_Powder",
+        "quantity":    "60",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Brick",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Ceramic_Parts_2",
+        "output":      "Ceramic_Parts",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Clay",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Conveyor_Belt_2",
+        "output":      "Conveyor_Belt",
+        "quantity":    "250",
+        "inputs":      [
+            {
+                "item":     "Gearbox",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Copper_Frame_2",
+        "output":      "Copper_Frame",
+        "quantity":    "40",
+        "inputs":      [
+            {
+                "item":     "Copper_Slab",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "120.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Copper_Ingot_2",
+        "output":      "Copper_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ore_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Copper_Mechanism_2",
+        "output":      "Copper_Mechanism",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Slab",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Electrical_Set_2",
+        "output":      "Electrical_Set",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "2"
+            },
+            {
+                "item":     "Wire_Spindle",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Gearbox_2",
+        "output":      "Gearbox",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "4"
+            },
+            {
+                "item":     "Copper_Slab",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Glass_2",
+        "output":      "Glass",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Sand",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Frame_2",
+        "output":      "Iron_Frame",
+        "quantity":    "40",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "120.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Ingot_2",
+        "output":      "Iron_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ore_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "4.0",
+        "produced_in": "Smelter"
+    },
+    {
+        "id":          "Iron_Mechanism_2",
+        "output":      "Iron_Mechanism",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Slab",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Limestone_Brick_2",
+        "output":      "Limestone_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Limestone",
+                "quantity": "500"
+            }
+        ],
+        "base_time":   "20.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Mining_Charge_2",
+        "output":      "Mining_Charge",
+        "quantity":    "50",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Brick",
+                "quantity": "1"
+            },
+            {
+                "item":     "Shiverthorn_Extract_Gel",
+                "quantity": "1"
+            },
+            {
+                "item":     "Kindlevine_Extract_Brick",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "60.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Plantmatter_Fiber_2",
+        "output":      "Plantmatter_Fiber",
+        "quantity":    "12",
+        "inputs":      [
+            {
+                "item":     "Plantmatter",
+                "quantity": "20"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Plantmatter_Frame_2",
+        "output":      "Plantmatter_Frame",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Stems",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "6.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Processor_Array_2",
+        "output":      "Processor_Array",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Brick",
+                "quantity": "4"
+            },
+            {
+                "item":     "Electrical_Set",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "2.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Quicklime_2",
+        "output":      "Quicklime",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Limestone",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Refined_Copper_Chunk_2",
+        "output":      "Refined_Copper_Chunk",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Refined_Iron_Chunk_2",
+        "output":      "Refined_Iron_Chunk",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "12.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Relay_Circuit_2",
+        "output":      "Relay_Circuit",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Slab",
+                "quantity": "2"
+            },
+            {
+                "item":     "Cooling_System",
+                "quantity": "50"
+            },
+            {
+                "item":     "Processor_Array",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Shiverthorn_Coolant_2",
+        "output":      "Shiverthorn_Coolant",
+        "quantity":    "250",
+        "inputs":      [
+            {
+                "item":     "Iron_Mechanism",
+                "quantity": "1"
+            },
+            {
+                "item":     "Shiverthorn_Extract_Gel",
+                "quantity": "2"
+            },
+            {
+                "item":     "Limestone_Brick",
+                "quantity": "8"
+            }
+        ],
+        "base_time":   "10.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Soil_2",
+        "output":      "Soil",
+        "quantity":    "2",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "24"
+            }
+        ],
+        "base_time":   "0.25",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Steel_Frame_2",
+        "output":      "Steel_Frame",
+        "quantity":    "40",
+        "inputs":      [
+            {
+                "item":     "Steel_Slab",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "120.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Wire_Spindle_2",
+        "output":      "Wire_Spindle",
+        "quantity":    "3",
+        "inputs":      [
+            {
+                "item":     "Copper_Slab",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "5.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Chunk_3",
+        "output":      "Atlantum_Chunk",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "6"
+            }
+        ],
+        "base_time":   "3.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Atlantum_Ingot_3",
+        "output":      "Atlantum_Ingot",
+        "quantity":    "5",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Mixture",
+                "quantity": "5"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Carbon_Powder_3",
+        "output":      "Carbon_Powder",
+        "quantity":    "4",
+        "inputs":      [
+            {
+                "item":     "Plantmatter",
+                "quantity": "4"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Copper_Ingot_3",
+        "output":      "Copper_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ore",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Copper_Slab_3",
+        "output":      "Copper_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Inserter_3",
+        "output":      "Inserter",
+        "quantity":    "50",
+        "inputs":      [
+            {
+                "item":     "Gearbox",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "30.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Iron_Ingot_3",
+        "output":      "Iron_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ore",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Iron_Slab_3",
+        "output":      "Iron_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Chunk",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Plantmatter_Brick_3",
+        "output":      "Plantmatter_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "400"
+            }
+        ],
+        "base_time":   "48.0",
+        "produced_in": "Assembler"
+    },
+    {
+        "id":          "Quicklime_3",
+        "output":      "Quicklime",
+        "quantity":    "125",
+        "inputs":      [
+            {
+                "item":     "Limestone_Brick",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Steel_Slab_3",
+        "output":      "Steel_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Atlantum_Slab_4",
+        "output":      "Atlantum_Slab",
+        "quantity":    "10",
+        "inputs":      [
+            {
+                "item":     "Atlantum_Mixture_Brick",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Carbon_Powder_4",
+        "output":      "Carbon_Powder",
+        "quantity":    "4",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "10"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Copper_Ingot_4",
+        "output":      "Copper_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Ore_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Copper_Slab_4",
+        "output":      "Copper_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Copper_Chunk",
+                "quantity": "2"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Iron_Ingot_4",
+        "output":      "Iron_Ingot",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ore_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Iron_Slab_4",
+        "output":      "Iron_Slab",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Limestone_Brick_4",
+        "output":      "Limestone_Brick",
+        "quantity":    "1",
+        "inputs":      [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "500"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    },
+    {
+        "id":          "Carbon_Powder_5",
+        "output":      "Carbon_Powder",
+        "quantity":    "4",
+        "inputs":      [
+            {
+                "item":     "Plantmatter_Frame",
+                "quantity": "1"
+            }
+        ],
+        "base_time":   "1.0",
+        "produced_in": "Blast_Smelter"
+    }
+]

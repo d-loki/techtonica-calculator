@@ -1,0 +1,438 @@
+[
+    {
+        "id":        "Atlantum_Chunk",
+        "input":     "Atlantum_Chunk",
+        "outputs":   [
+            {
+                "item":     "Clay",
+                "quantity": "6"
+            },
+            {
+                "item":     "Atlantum_Powder",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Atlantum_Ore",
+        "input":     "Atlantum_Ore",
+        "outputs":   [
+            {
+                "item":     "Atlantum_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time": "2.0"
+    },
+    {
+        "id":        "Atlantum_Slab",
+        "input":     "Atlantum_Slab",
+        "outputs":   [
+            {
+                "item":     "Atlantum_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "1.0"
+    },
+    {
+        "id":        "Carbon_Powder_Brick",
+        "input":     "Carbon_Powder_Brick",
+        "outputs":   [
+            {
+                "item":     "Carbon_Powder",
+                "quantity": "250"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Ceramic_Parts",
+        "input":     "Ceramic_Parts",
+        "outputs":   [
+            {
+                "item":     "Gravel",
+                "quantity": "10"
+            }
+        ],
+        "base_time": "10.0"
+    },
+    {
+        "id":        "Copper_Chunk",
+        "input":     "Copper_Chunk",
+        "outputs":   [
+            {
+                "item":     "Gravel",
+                "quantity": "5"
+            },
+            {
+                "item":     "Copper_Ore",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Copper_Mechanism",
+        "input":     "Copper_Mechanism",
+        "outputs":   [
+            {
+                "item":     "Copper_Component",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Copper_Ore",
+        "input":     "Copper_Ore",
+        "outputs":   [
+            {
+                "item":     "Copper_Ore_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time": "3.0"
+    },
+    {
+        "id":        "Copper_Slab",
+        "input":     "Copper_Slab",
+        "outputs":   [
+            {
+                "item":     "Copper_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "30.0"
+    },
+    {
+        "id":        "Electrical_Set",
+        "input":     "Electrical_Set",
+        "outputs":   [
+            {
+                "item":     "Electric_Component",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Gearbox",
+        "input":     "Gearbox",
+        "outputs":   [
+            {
+                "item":     "Mechanical_Component",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Gravel",
+        "input":     "Gravel",
+        "outputs":   [
+            {
+                "item":     "Sand",
+                "quantity": "3"
+            }
+        ],
+        "base_time": "3.0"
+    },
+    {
+        "id":        "Infused_Atlantum",
+        "input":     "Infused_Atlantum",
+        "outputs":   [
+            {
+                "item":     "Atlantum_Powder",
+                "quantity": "4"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "6"
+            }
+        ],
+        "base_time": "9.0"
+    },
+    {
+        "id":        "Infused_Copper",
+        "input":     "Infused_Copper",
+        "outputs":   [
+            {
+                "item":     "Copper_Ore",
+                "quantity": "5"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "4"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Infused_Iron",
+        "input":     "Infused_Iron",
+        "outputs":   [
+            {
+                "item":     "Iron_Ore",
+                "quantity": "5"
+            },
+            {
+                "item":     "Limestone",
+                "quantity": "4"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Iron_Chunk",
+        "input":     "Iron_Chunk",
+        "outputs":   [
+            {
+                "item":     "Gravel",
+                "quantity": "5"
+            },
+            {
+                "item":     "Iron_Ore",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Iron_Mechanism",
+        "input":     "Iron_Mechanism",
+        "outputs":   [
+            {
+                "item":     "Iron_Component",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Iron_Ore",
+        "input":     "Iron_Ore",
+        "outputs":   [
+            {
+                "item":     "Iron_Ore_Powder",
+                "quantity": "1"
+            }
+        ],
+        "base_time": "3.0"
+    },
+    {
+        "id":        "Iron_Slab",
+        "input":     "Iron_Slab",
+        "outputs":   [
+            {
+                "item":     "Iron_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "30.0"
+    },
+    {
+        "id":        "Kindlevine",
+        "input":     "Kindlevine",
+        "outputs":   [
+            {
+                "item":     "Kindlevine_Seed",
+                "quantity": "1"
+            },
+            {
+                "item":     "Kindlevine_Stems",
+                "quantity": "3"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Kindlevine_Extract_Brick",
+        "input":     "Kindlevine_Extract_Brick",
+        "outputs":   [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "250"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Kindlevine_Stems",
+        "input":     "Kindlevine_Stems",
+        "outputs":   [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "3"
+            },
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "3"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Kindlevine_Stems_Washed",
+        "input":     "Kindlevine_Stems_Washed",
+        "outputs":   [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "14"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Limestone_Brick",
+        "input":     "Limestone_Brick",
+        "outputs":   [
+            {
+                "item":     "Limestone",
+                "quantity": "250"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Plantmatter_Brick",
+        "input":     "Plantmatter_Brick",
+        "outputs":   [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "200"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Plantmatter_Frame",
+        "input":     "Plantmatter_Frame",
+        "outputs":   [
+            {
+                "item":     "Plantmatter_Fiber",
+                "quantity": "4"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Processor_Array",
+        "input":     "Processor_Array",
+        "outputs":   [
+            {
+                "item":     "Processor_Unit",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Reinforced_Copper_Frame",
+        "input":     "Reinforced_Copper_Frame",
+        "outputs":   [
+            {
+                "item":     "Copper_Frame",
+                "quantity": "10"
+            }
+        ],
+        "base_time": "30.0"
+    },
+    {
+        "id":        "Reinforced_Iron_Frame",
+        "input":     "Reinforced_Iron_Frame",
+        "outputs":   [
+            {
+                "item":     "Iron_Frame",
+                "quantity": "10"
+            }
+        ],
+        "base_time": "30.0"
+    },
+    {
+        "id":        "Relay_Circuit",
+        "input":     "Relay_Circuit",
+        "outputs":   [
+            {
+                "item":     "Advanced_Circuit",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Shiverthorn",
+        "input":     "Shiverthorn",
+        "outputs":   [
+            {
+                "item":     "Shiverthorn_Buds",
+                "quantity": "3"
+            },
+            {
+                "item":     "Shiverthorn_Seed",
+                "quantity": "1"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Shiverthorn_Buds",
+        "input":     "Shiverthorn_Buds",
+        "outputs":   [
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "3"
+            },
+            {
+                "item":     "Plantmatter",
+                "quantity": "3"
+            }
+        ],
+        "base_time": "6.0"
+    },
+    {
+        "id":        "Shiverthorn_Buds_Neutralized",
+        "input":     "Shiverthorn_Buds_Neutralized",
+        "outputs":   [
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "14"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Shiverthorn_Extract_Gel",
+        "input":     "Shiverthorn_Extract_Gel",
+        "outputs":   [
+            {
+                "item":     "Shiverthorn_Extract",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    },
+    {
+        "id":        "Steel_Slab",
+        "input":     "Steel_Slab",
+        "outputs":   [
+            {
+                "item":     "Steel_Ingot",
+                "quantity": "25"
+            }
+        ],
+        "base_time": "30.0"
+    },
+    {
+        "id":        "Wire_Spindle",
+        "input":     "Wire_Spindle",
+        "outputs":   [
+            {
+                "item":     "Copper_Wire",
+                "quantity": "50"
+            }
+        ],
+        "base_time": "60.0"
+    }
+]

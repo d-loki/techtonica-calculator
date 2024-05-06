@@ -1,0 +1,750 @@
+[
+    {
+        "id":   "Mining_Drill",
+        "name": "Mining Drill"
+    },
+    {
+        "id":   "Blast_Drill",
+        "name": "Blast Drill"
+    },
+    {
+        "id":   "Mining_Charge",
+        "name": "Mining Charge"
+    },
+    {
+        "id":   "Advanced_Mining_Drill",
+        "name": "Mining Drill MKII"
+    },
+    {
+        "id":   "Smelter",
+        "name": "Smelter"
+    },
+    {
+        "id":   "Advanced_Smelter",
+        "name": "Smelter MKII"
+    },
+    {
+        "id":   "Blast_Smelter",
+        "name": "Blast Smelter"
+    },
+    {
+        "id":   "Assembler",
+        "name": "Assembler"
+    },
+    {
+        "id":   "Advanced_Assembler",
+        "name": "Assembler MKII"
+    },
+    {
+        "id":   "Thresher",
+        "name": "Thresher"
+    },
+    {
+        "id":   "Advanced_Thresher",
+        "name": "Thresher MKII"
+    },
+    {
+        "id":   "Planter",
+        "name": "Planter"
+    },
+    {
+        "id":   "Crank_Generator",
+        "name": "Crank Generator"
+    },
+    {
+        "id":   "Crank_Generator_MKII",
+        "name": "Crank Generator MKII"
+    },
+    {
+        "id":   "Water_Wheel",
+        "name": "Water Wheel"
+    },
+    {
+        "id":   "Core_Composer",
+        "name": "Core Composer"
+    },
+    {
+        "id":   "Purple_Core",
+        "name": "Research Core 380NM (Purple)"
+    },
+    {
+        "id":   "Blue_Core",
+        "name": "Research Core 480NM (Blue)"
+    },
+    {
+        "id":   "Conveyor_Belt",
+        "name": "Conveyor Belt"
+    },
+    {
+        "id":   "Advanced_Conveyor_Belt",
+        "name": "Conveyor Belt MKII"
+    },
+    {
+        "id":   "Advanced_Conveyor_Belt_2",
+        "name": "Conveyor Belt MKIII"
+    },
+    {
+        "id":   "Monorail_Depot",
+        "name": "Monorail Depot"
+    },
+    {
+        "id":   "Monorail_Pole",
+        "name": "Monorail Pole"
+    },
+    {
+        "id":   "Monorail_Track",
+        "name": "Monorail Track"
+    },
+    {
+        "id":   "Inserter",
+        "name": "Inserter"
+    },
+    {
+        "id":   "Long_Inserter",
+        "name": "Long Inserter"
+    },
+    {
+        "id":   "Filter_Inserter",
+        "name": "Filter Inserter"
+    },
+    {
+        "id":   "Fast_Inserter",
+        "name": "Fast Inserter"
+    },
+    {
+        "id":   "Stack_Inserter",
+        "name": "Stack Inserter"
+    },
+    {
+        "id":   "Stack_Filter_Inserter",
+        "name": "Stack Filter Inserter"
+    },
+    {
+        "id":   "Container",
+        "name": "Container"
+    },
+    {
+        "id":   "Accumulator",
+        "name": "Accumulator"
+    },
+    {
+        "id":   "Voltage_Stepper",
+        "name": "Voltage Stepper"
+    },
+    {
+        "id":   "HVC",
+        "name": "High Voltage Cable"
+    },
+    {
+        "id":   "Power_Floor",
+        "name": "Power Floor"
+    },
+    {
+        "id":   "Calycite_Platform_11",
+        "name": "Calycite Platform (1x1)"
+    },
+    {
+        "id":   "Calycite_Platform_33",
+        "name": "Calycite Platform (3x3)"
+    },
+    {
+        "id":   "Calycite_Platform_55",
+        "name": "Calycite Platform (5x5)"
+    },
+    {
+        "id":   "Catwalk_39",
+        "name": "Catwalk (3x9)"
+    },
+    {
+        "id":   "Catwalk_59",
+        "name": "Catwalk (5x9)"
+    },
+    {
+        "id":   "Calycite_Wall_33",
+        "name": "Calycite Wall (3x3)"
+    },
+    {
+        "id":   "Calycite_Wall_53",
+        "name": "Calycite Wall (5x3)"
+    },
+    {
+        "id":   "Calycite_Wall_55",
+        "name": "Calycite Wall (5x5)"
+    },
+    {
+        "id":   "Calycite_Gate_52",
+        "name": "Calycite Gate (5x2)"
+    },
+    {
+        "id":   "Calycite_Gate_55",
+        "name": "Calycite Gate (5x5)"
+    },
+    {
+        "id":   "Calycite_Gate_105",
+        "name": "Calycite Gate (10x5)"
+    },
+    {
+        "id":   "Calycite_Wall_Cap_31",
+        "name": "Calycite Wall Cap (3x1)"
+    },
+    {
+        "id":   "Calycite_Wall_Cap_51",
+        "name": "Calycite Wall Cap (5x1)"
+    },
+    {
+        "id":   "Calycite_Wall_Corner_11",
+        "name": "Calycite Wall Corner (1x1)"
+    },
+    {
+        "id":   "Calycite_Vertical_Wall_Cap_31",
+        "name": "Calycite Vertical Wall Cap (3x1)"
+    },
+    {
+        "id":   "Calycite_Vertical_Wall_Cap_51",
+        "name": "Calycite Vertical Wall Cap (5x1)"
+    },
+    {
+        "id":   "Calycite_Wall_Cutaway_22",
+        "name": "Calycite Wall Cutaway (2x2)"
+    },
+    {
+        "id":   "Calycite_Wall_Cutaway_33",
+        "name": "Calycite Wall Cutaway (3x3)"
+    },
+    {
+        "id":   "Calycite_Wall_Cutaway_53",
+        "name": "Calycite Wall Cutaway (5x3)"
+    },
+    {
+        "id":   "Calycite_Wall_Cutaway_55",
+        "name": "Calycite Wall Cutaway (5x5)"
+    },
+    {
+        "id":   "Calycite_Pillar_11",
+        "name": "Calycite Pillar (1x1)"
+    },
+    {
+        "id":   "Calycite_Vertical_Wall_Corner_11",
+        "name": "Calycite Vertical Wall Corner (1x1)"
+    },
+    {
+        "id":   "Stairs",
+        "name": "Stairs"
+    },
+    {
+        "id":   "Metal_Stairs_31",
+        "name": "Metal Stairs (3x1)"
+    },
+    {
+        "id":   "Metal_Stairs_33",
+        "name": "Metal Stairs (3x3)"
+    },
+    {
+        "id":   "Metal_Stairs_35",
+        "name": "Metal Stairs (3x5)"
+    },
+    {
+        "id":   "Light_Stick",
+        "name": "Light Stick"
+    },
+    {
+        "id":   "Red_Light_Stick",
+        "name": "Red Light Stick"
+    },
+    {
+        "id":   "Green_Light_Stick",
+        "name": "Green Light Stick"
+    },
+    {
+        "id":   "Blue_Light_Stick",
+        "name": "Blue Light Stick"
+    },
+    {
+        "id":   "Overhead_Light",
+        "name": "Overhead Light"
+    },
+    {
+        "id":   "Standing_Lamp",
+        "name": "Standing Lamp (1x5)"
+    },
+    {
+        "id":   "Wall_Light_11",
+        "name": "Wall Light (1x1)"
+    },
+    {
+        "id":   "Wall_Light_31",
+        "name": "Wall Light (3x1)"
+    },
+    {
+        "id":   "Hanging_Lamp",
+        "name": "Hanging Lamp (1x1)"
+    },
+    {
+        "id":   "Fan_Lamp",
+        "name": "Fan Lamp (7x2)"
+    },
+    {
+        "id":   "Railing_11",
+        "name": "Railing (1x1)"
+    },
+    {
+        "id":   "Railing_31",
+        "name": "Railing (3x1)"
+    },
+    {
+        "id":   "Railing_51",
+        "name": "Railing (5x1)"
+    },
+    {
+        "id":   "Railing_Corner_11",
+        "name": "Railing Corner (1x1)"
+    },
+    {
+        "id":   "Railing_Corner_33",
+        "name": "Railing Corner (3x3)"
+    },
+    {
+        "id":   "Metal_Pillar_11",
+        "name": "Metal Pillar (1x1)"
+    },
+    {
+        "id":   "Metal_Pillar_13",
+        "name": "Metal Pillar (1x3)"
+    },
+    {
+        "id":   "Metal_Pillar_15",
+        "name": "Metal Pillar (1x5)"
+    },
+    {
+        "id":   "Calycite_Pillar_13",
+        "name": "Calycite Pillar (1x3)"
+    },
+    {
+        "id":   "Calycite_Pillar_15",
+        "name": "Calycite Pillar (1x5)"
+    },
+    {
+        "id":   "Calycite_Angle_Support_33",
+        "name": "Calycite Angle Support (3x3)"
+    },
+    {
+        "id":   "Metal_Angle_Support",
+        "name": "Metal Angle Support (5x2)"
+    },
+    {
+        "id":   "Metal_Rib_Base_12",
+        "name": "Metal Rib Base (1x2)"
+    },
+    {
+        "id":   "Metal_Rib_Middle_13",
+        "name": "Metal Rib Middle (1x3)"
+    },
+    {
+        "id":   "Calycite_Beam_11",
+        "name": "Calycite Beam (1x1)"
+    },
+    {
+        "id":   "Calycite_Beam_31",
+        "name": "Calycite Beam (3x1)"
+    },
+    {
+        "id":   "Calycite_Beam_51",
+        "name": "Calycite Beam (5x1)"
+    },
+    {
+        "id":   "Metal_Beam_11",
+        "name": "Metal Beam (1x1)"
+    },
+    {
+        "id":   "Metal_Beam_13",
+        "name": "Metal Beam (1x3)"
+    },
+    {
+        "id":   "Metal_Beam_15",
+        "name": "Metal Beam (1x5)"
+    },
+    {
+        "id":   "Small_Floor_Pot",
+        "name": "Small Floor Pot"
+    },
+    {
+        "id":   "Wall_Pot",
+        "name": "Wall Pot"
+    },
+    {
+        "id":   "Medium_Floor_Pot",
+        "name": "Medium Floor Pot"
+    },
+    {
+        "id":   "Ceiling_Plant_11",
+        "name": "Ceiling Plant (1x1)"
+    },
+    {
+        "id":   "Ceiling_Plant_33",
+        "name": "Ceiling Plant (3x3)"
+    },
+    {
+        "id":   "Wall_Plant_11",
+        "name": "Wall Plant (1x1)"
+    },
+    {
+        "id":   "Wall_Plant_33",
+        "name": "Wall Plant (3x3)"
+    },
+    {
+        "id":   "Beacon",
+        "name": "Beacon"
+    },
+    {
+        "id":   "Kindlevine_Stems",
+        "name": "Kindlevine Stems"
+    },
+    {
+        "id":   "Kindlevine_Stems_Washed",
+        "name": "Kindlevine Stems (Washed)"
+    },
+    {
+        "id":   "Plantmatter",
+        "name": "Plantmatter"
+    },
+    {
+        "id":   "Shiverthorn_Buds",
+        "name": "Shiverthorn Buds"
+    },
+    {
+        "id":   "Shiverthorn_Buds_Neutralized",
+        "name": "Shiverthorn Buds (Neutralized)"
+    },
+    {
+        "id":   "Limestone",
+        "name": "Limestone"
+    },
+    {
+        "id":   "Plantmatter_Fiber",
+        "name": "Plantmatter Fiber"
+    },
+    {
+        "id":   "Soil",
+        "name": "Dirt"
+    },
+    {
+        "id":   "Atlantum_Chunk",
+        "name": "Atlantum Chunk"
+    },
+    {
+        "id":   "Copper_Chunk",
+        "name": "Copper Chunk"
+    },
+    {
+        "id":   "Iron_Chunk",
+        "name": "Iron Chunk"
+    },
+    {
+        "id":   "Copper_Ore",
+        "name": "Copper Ore"
+    },
+    {
+        "id":   "Iron_Ore",
+        "name": "Iron Ore"
+    },
+    {
+        "id":   "Atlantum_Ore",
+        "name": "Atlantum Ore"
+    },
+    {
+        "id":   "Kindlevine_Extract",
+        "name": "Kindlevine Extract"
+    },
+    {
+        "id":   "Shiverthorn_Extract",
+        "name": "Shiverthorn Extract"
+    },
+    {
+        "id":   "Atlantum_Powder",
+        "name": "Atlantum Powder"
+    },
+    {
+        "id":   "Sand",
+        "name": "Sand"
+    },
+    {
+        "id":   "Gravel",
+        "name": "Gravel"
+    },
+    {
+        "id":   "Iron_Ore_Powder",
+        "name": "Iron Ore Powder"
+    },
+    {
+        "id":   "Copper_Ore_Powder",
+        "name": "Copper Ore Powder"
+    },
+    {
+        "id":   "Carbon_Powder",
+        "name": "Carbon Powder"
+    },
+    {
+        "id":   "Quicklime",
+        "name": "Quicklime"
+    },
+    {
+        "id":   "Cement",
+        "name": "Cement"
+    },
+    {
+        "id":   "Steel_Mixture",
+        "name": "Steel Mixture"
+    },
+    {
+        "id":   "Atlantum_Mixture",
+        "name": "Atlantum Mixture"
+    },
+    {
+        "id":   "Plantmatter_Brick",
+        "name": "Plantmatter Brick"
+    },
+    {
+        "id":   "Limestone_Brick",
+        "name": "Limestone Brick"
+    },
+    {
+        "id":   "Clay",
+        "name": "Clay"
+    },
+    {
+        "id":   "Concrete",
+        "name": "Concrete"
+    },
+    {
+        "id":   "Decorative_Concrete",
+        "name": "Decorative Concrete"
+    },
+    {
+        "id":   "Glass",
+        "name": "Glass"
+    },
+    {
+        "id":   "Iron_Ingot",
+        "name": "Iron Ingot"
+    },
+    {
+        "id":   "Iron_Slab",
+        "name": "Iron Slab"
+    },
+    {
+        "id":   "Copper_Ingot",
+        "name": "Copper Ingot"
+    },
+    {
+        "id":   "Copper_Slab",
+        "name": "Copper Slab"
+    },
+    {
+        "id":   "Steel_Ingot",
+        "name": "Steel Ingot"
+    },
+    {
+        "id":   "Steel_Slab",
+        "name": "Steel Slab"
+    },
+    {
+        "id":   "Atlantum_Ingot",
+        "name": "Atlantum Ingot"
+    },
+    {
+        "id":   "Atlantum_Slab",
+        "name": "Atlantum Slab"
+    },
+    {
+        "id":   "Plantmatter_Frame",
+        "name": "Plantmatter Frame"
+    },
+    {
+        "id":   "Iron_Frame",
+        "name": "Iron Frame"
+    },
+    {
+        "id":   "Iron_Component",
+        "name": "Iron Components"
+    },
+    {
+        "id":   "Copper_Wire",
+        "name": "Copper Wire"
+    },
+    {
+        "id":   "Copper_Frame",
+        "name": "Copper Frame"
+    },
+    {
+        "id":   "Copper_Component",
+        "name": "Copper Components"
+    },
+    {
+        "id":   "Shiverthorn_Coolant",
+        "name": "Shiverthorn Coolant"
+    },
+    {
+        "id":   "Cooling_System",
+        "name": "Cooling System"
+    },
+    {
+        "id":   "Mechanical_Component",
+        "name": "Mechanical Components"
+    },
+    {
+        "id":   "Electric_Component",
+        "name": "Electrical Components"
+    },
+    {
+        "id":   "Processor_Unit",
+        "name": "Processor Unit"
+    },
+    {
+        "id":   "Advanced_Circuit",
+        "name": "Advanced Circuit"
+    },
+    {
+        "id":   "Ceramic_Parts",
+        "name": "Ceramic Parts"
+    },
+    {
+        "id":   "Iron_Mechanism",
+        "name": "Iron Mechanism"
+    },
+    {
+        "id":   "Copper_Mechanism",
+        "name": "Copper Mechanism"
+    },
+    {
+        "id":   "Ceramic_Tiles",
+        "name": "Ceramic Tiles"
+    },
+    {
+        "id":   "Steel_Frame",
+        "name": "Steel Frame"
+    },
+    {
+        "id":   "Wire_Spindle",
+        "name": "Wire Spindle"
+    },
+    {
+        "id":   "Gearbox",
+        "name": "Gearbox"
+    },
+    {
+        "id":   "Reinforced_Iron_Frame",
+        "name": "Reinforced Iron Frame"
+    },
+    {
+        "id":   "Reinforced_Copper_Frame",
+        "name": "Reinforced Copper Frame"
+    },
+    {
+        "id":   "Electrical_Set",
+        "name": "Electrical Set"
+    },
+    {
+        "id":   "Electric_Frame",
+        "name": "Electric Frame"
+    },
+    {
+        "id":   "Electric_Motor",
+        "name": "Electric Motor"
+    },
+    {
+        "id":   "Processor_Array",
+        "name": "Processor Array"
+    },
+    {
+        "id":   "Relay_Circuit",
+        "name": "Relay Circuit"
+    },
+    {
+        "id":   "Biobrick",
+        "name": "Biobrick"
+    },
+    {
+        "id":   "Refined_Iron_Chunk",
+        "name": "Refined Iron Chunk"
+    },
+    {
+        "id":   "Refined_Copper_Chunk",
+        "name": "Refined Copper Chunk"
+    },
+    {
+        "id":   "Carbon_Powder_Brick",
+        "name": "Carbon Powder Brick"
+    },
+    {
+        "id":   "Kindlevine_Extract_Brick",
+        "name": "Kindlevine Extract Brick"
+    },
+    {
+        "id":   "Atlantum_Powder_Brick",
+        "name": "Atlantum Powder Brick"
+    },
+    {
+        "id":   "Atlantum_Mixture_Brick",
+        "name": "Atlantum Mixture Brick"
+    },
+    {
+        "id":   "Shiverthorn_Extract_Gel",
+        "name": "Shiverthorn Extract Gel"
+    },
+    {
+        "id":   "Infused_Iron",
+        "name": "Iron-Infused Limestone"
+    },
+    {
+        "id":   "Infused_Copper",
+        "name": "Copper-Infused Limestone"
+    },
+    {
+        "id":   "Infused_Atlantum",
+        "name": "Atlantum-Infused Limestone"
+    },
+    {
+        "id":   "Kindlevine_Seed",
+        "name": "Kindlevine Seed"
+    },
+    {
+        "id":   "Kindlevine",
+        "name": "Kindlevine"
+    },
+    {
+        "id":   "Shiverthorn_Seed",
+        "name": "Shiverthorn Seed"
+    },
+    {
+        "id":   "Shiverthorn",
+        "name": "Shiverthorn"
+    },
+    {
+        "id":   "Iron_Pickaxe",
+        "name": "Standard Pickaxe"
+    },
+    {
+        "id":   "MOLE",
+        "name": "The M.O.L.E."
+    },
+    {
+        "id":   "Omniseeker",
+        "name": "Omniseeker"
+    },
+    {
+        "id":   "Hover_Pack",
+        "name": "Hover Pack"
+    },
+    {
+        "id":   "Railrunner",
+        "name": "Railrunner"
+    },
+    {
+        "id":   "Scanner",
+        "name": "Scanner"
+    },
+    {
+        "id":   "Replacer",
+        "name": "Replacer"
+    }
+]
