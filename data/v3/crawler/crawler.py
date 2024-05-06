@@ -1,15 +1,17 @@
 # Import the requests library to send HTTP requests
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
 # The io library manages file-related in/out operations.
 import io
-# Use Pillow to convert the Python object to an RGB image
-from PIL import Image
+import os
 # pathlib lets you point to specific directories. Use it to store the images in a folder.
 from pathlib import Path
-import os
+
+import pandas as pd
 import progressbar
+import requests
+# Use Pillow to convert the Python object to an RGB image
+from PIL import Image
+from bs4 import BeautifulSoup
+
 
 def get_items_data():
     # Scraping items data
@@ -26,6 +28,7 @@ def get_items_data():
 
     return data
 
+
 def get_items_image():
     print("Scraping items images")
     url = "https://www.techtonica-calculator.com/seiten/Items.php"
@@ -35,14 +38,16 @@ def get_items_image():
     results = []
 
     base_url = 'https://www.techtonica-calculator.com/'
-    for div in soup.findAll('div', class_='p2px m2l zentrieren rad10 backcolor_tiefdunkelblau color_orange border_blau s05'):
+    for div in soup.findAll('div',
+                            class_ = 'p2px m2l zentrieren rad10 backcolor_tiefdunkelblau color_orange border_blau s05'
+                            ):
         href = div.find('a').get('href')
         item_id = href.split('=')[1]
         img_src = div.find('img').get('src')
         # Si la source commence par "../bilder/"
         if img_src is not None and img_src.startswith("../bilder/") and img_src not in results:
             # On ajoute l'URL de base et on ajoute la source sans les "../bilder"
-            full_url = base_url + img_src[3:]+f'?id={item_id}'
+            full_url = base_url + img_src[3:] + f'?id={item_id}'
             results.append(full_url)
 
     # Permet de checker les résultats
@@ -58,7 +63,7 @@ def get_items_image():
         image = Image.open(image_file).convert("RGB")
 
         item_id = b.split('=')[1]
-        file_path = Path("../dist/images", os.path.basename(item_id + ".png"))
+        file_path = Path("../../../public/items", os.path.basename(item_id + ".png"))
         image.save(file_path, "PNG", quality = 80)
 
     return

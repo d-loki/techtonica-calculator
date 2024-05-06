@@ -36,4 +36,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/data/v3/dist
+/public/items
