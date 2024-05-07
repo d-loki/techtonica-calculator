@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import Image from 'next/image';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import useCraftStore from '@/stores/craft_store';
 
 type CraftType = {
     id: string;
@@ -39,14 +40,15 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
     belts: number;
     quantity_factories: number;
 } {
+
     console.log( '%c threeCrafts', 'background: #3DFFC0; color: #000000' );
     const craft = findCraft( id );
     if ( craft.length === 0 ) {
         return [];
     }
 
-    const itemPerbelt             = 240;
-    const assemblerEfficiency     = 0.25;
+    const itemPerbelt             = useCraftStore.getState().beltCapacity;
+    const assemblerEfficiency     = useCraftStore.getState().assemblerEfficiency;
     const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * assemblerEfficiency;
     const quantityFactories       = itemsPerMinuteNeeded / itemPerMinutePerFactory;
 
@@ -117,6 +119,15 @@ export default function Home() {
         quantity_factories: number;
     }[]>( [] );
 
+    const [ conveyorBelt, setConveyorBelt ] = useState<string>( 'Conveyor_Belt' );
+    const [ drill, setDrill ]               = useState<string>( 'Mining_Drill' );
+    const [ smelter, setSmelter ]           = useState<string>( 'Smelter' );
+    const [ assembler, setAssembler ]       = useState<string>( 'Assembler' );
+    const [ thresher, setThresher ]         = useState<string>( 'Thresher' );
+
+    const setBeltCapacity        = useCraftStore( ( state ) => state.setBeltCapacity );
+    const setAssemblerEfficiency = useCraftStore( ( state ) => state.setAssemblerEfficiency );
+
     function onItemChange( id: string ) {
         setItem( id );
     }
@@ -129,6 +140,41 @@ export default function Home() {
     function onItemsPerMinuteChange( event: ChangeEvent<HTMLInputElement> ) {
         setItemsPerMinute( Number( event.target.value ) );
         // calculate( 'items_per_minute' );
+    }
+
+    function onConveyorBeltChange( id: string ) {
+        setConveyorBelt( id );
+        if ( id === 'Conveyor_Belt' ) {
+            setBeltCapacity( 240 );
+        } else if ( id === 'Advanced_Conveyor_Belt' ) {
+            setBeltCapacity( 480 );
+        } else {
+            setBeltCapacity( 720 );
+        }
+
+        calculate( 'items_per_minute' );
+    }
+
+    function onDrillChange( id: string ) {
+        setDrill( id );
+    }
+
+    function onSmelterChange( id: string ) {
+        setSmelter( id );
+    }
+
+    function onAssemblerChange( id: string ) {
+        setAssembler( id );
+        if ( id === 'Assembler' ) {
+            setAssemblerEfficiency( 0.25 );
+        } else {
+            setAssemblerEfficiency( 0.5 );
+        }
+        calculate( 'items_per_minute' );
+    }
+
+    function onThresherChange( id: string ) {
+        setThresher( id );
     }
 
     useEffect( () => {
@@ -255,7 +301,7 @@ export default function Home() {
                                 </legend>
                                 <div className="grid gap-3">
                                     <Label htmlFor="model">Default transport belt</Label>
-                                    <Select defaultValue="Conveyor_Belt">
+                                    <Select value={ conveyorBelt } onValueChange={ onConveyorBeltChange }>
                                         <SelectTrigger id="conveyor_belt"
                                                        className="items-start [&_[data-description]]:hidden">
                                             <SelectValue placeholder="Select a belt" />
@@ -270,7 +316,7 @@ export default function Home() {
                                 </div>
                                 <div className="grid gap-3">
                                     <Label htmlFor="model">Default drill</Label>
-                                    <Select defaultValue="Mining_Drill">
+                                    <Select value={ drill } onValueChange={ onDrillChange }>
                                         <SelectTrigger id="drill"
                                                        className="items-start [&_[data-description]]:hidden">
                                             <SelectValue placeholder="Select a drill" />
@@ -284,7 +330,7 @@ export default function Home() {
                                 </div>
                                 <div className="grid gap-3">
                                     <Label htmlFor="model">Default smelter</Label>
-                                    <Select defaultValue="Smelter">
+                                    <Select value={ smelter } onValueChange={ onSmelterChange }>
                                         <SelectTrigger id="smelter"
                                                        className="items-start [&_[data-description]]:hidden">
                                             <SelectValue placeholder="Select a smelter" />
@@ -298,7 +344,7 @@ export default function Home() {
                                 </div>
                                 <div className="grid gap-3">
                                     <Label htmlFor="model">Default assembler</Label>
-                                    <Select defaultValue="Assembler">
+                                    <Select value={ assembler } onValueChange={ onAssemblerChange }>
                                         <SelectTrigger id="assembler"
                                                        className="items-start [&_[data-description]]:hidden">
                                             <SelectValue placeholder="Select a assembler" />
@@ -311,7 +357,7 @@ export default function Home() {
                                 </div>
                                 <div className="grid gap-3">
                                     <Label htmlFor="model">Default thresher</Label>
-                                    <Select defaultValue="Thresher">
+                                    <Select value={ thresher } onValueChange={ onThresherChange }>
                                         <SelectTrigger id="thresher"
                                                        className="items-start [&_[data-description]]:hidden">
                                             <SelectValue placeholder="Select a thresher" />
