@@ -31,6 +31,29 @@ function findThresh( id: string ): CraftType[] {
     } );
 }
 
+function updateResults( output: string,
+                        itemsPerMinute: number,
+                        belts: number,
+                        quantityFactories: number,
+                        produced_in: string | null,
+                        results: any[] ) {
+    const existingIndex = results.findIndex( ( result ) => result.output === output );
+    if ( existingIndex > -1 ) {
+        results[ existingIndex ].items_per_minute += itemsPerMinute;
+        results[ existingIndex ].belts += belts;
+        results[ existingIndex ].quantity_factories += quantityFactories;
+    } else {
+        results.push( {
+                          id:                 crypto.randomUUID(),
+                          output,
+                          items_per_minute:   itemsPerMinute,
+                          belts,
+                          quantity_factories: quantityFactories,
+                          produced_in,
+                      } );
+    }
+}
+
 // 1 Mining drill
 // --- 3 Iron Frame
 // ------ 6 Iron Ingot per frame (18 Iron Ingot)
@@ -87,14 +110,22 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
     if ( craft.length > 0 ) {
         console.log( `%c ADD RESULT FOR ${ craft[ 0 ].output } IN LINE 89`, 'background: #fdd835; color: #000000' );
-        result.push( {
-                         id:                 crypto.randomUUID(),
-                         output:             craft[ 0 ].output,
-                         items_per_minute:   itemsPerMinuteNeeded,
-                         belts:              itemsPerMinuteNeeded / itemPerbelt,
-                         quantity_factories: quantityFactories,
-                         produced_in:        craft[ 0 ].produced_in,
-                     } );
+
+
+        updateResults( craft[ 0 ].output,
+                       itemsPerMinuteNeeded,
+                       itemsPerMinuteNeeded / itemPerbelt,
+                       quantityFactories,
+                       craft[ 0 ].produced_in,
+                       result );
+        // result.push( {
+        //                  id:                 crypto.randomUUID(),
+        //                  output:             craft[ 0 ].output,
+        //                  items_per_minute:   itemsPerMinuteNeeded,
+        //                  belts:              itemsPerMinuteNeeded / itemPerbelt,
+        //                  quantity_factories: quantityFactories,
+        //                  produced_in:        craft[ 0 ].produced_in,
+        //              } );
     }
 
     for ( const input of craft[ 0 ].inputs ) {
@@ -110,15 +141,15 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
             if ( findCirculare ) {
                 console.log( `%c CIRCULAR FOR ${ input.item }`, 'background: #FFB122; color: #000000' );
-                result.push( {
-                                 id:                 crypto.randomUUID(),
-                                 output:             input.item,
-                                 items_per_minute:   itemsPerMinuteNeeded,
-                                 belts:              itemsPerMinuteNeeded / itemPerbelt,
-                                 quantity_factories: 0,
-                                 produced_in:        null,
-                             } );
-
+                // result.push( {
+                //                  id:                 crypto.randomUUID(),
+                //                  output:             input.item,
+                //                  items_per_minute:   itemsPerMinuteNeeded,
+                //                  belts:              itemsPerMinuteNeeded / itemPerbelt,
+                //                  quantity_factories: 0,
+                //                  produced_in:        null,
+                //              } );
+                updateResults( input.item, itemsPerMinuteNeeded, itemsPerMinuteNeeded / itemPerbelt, 0, null, result );
                 continue;
             }
             console.log( `Input qty ${ input.quantity }` );
@@ -155,27 +186,37 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
 
                 // TODO : Gérer les superlfux
-                console.log( `%c ADD RESULT FOR ${ input.item } IN LINE 148`, 'background: #fdd835; color: #000000' );
-                result.push( {
-                                 id:                 crypto.randomUUID(),
-                                 output:             input.item,
-                                 items_per_minute:   itemsPerMinuteNeeded,
-                                 belts:              itemsPerMinuteNeeded / itemPerbelt,
-                                 quantity_factories: itemsPerMinuteNeeded / qf,
-                                 produced_in:        'Thresher',
-                             } );
+                // result.push( {
+                //                  id:                 crypto.randomUUID(),
+                //                  output:             input.item,
+                //                  items_per_minute:   itemsPerMinuteNeeded,
+                //                  belts:              itemsPerMinuteNeeded / itemPerbelt,
+                //                  quantity_factories: itemsPerMinuteNeeded / qf,
+                //                  produced_in:        'Thresher',
+                //              } );
+                updateResults( input.item,
+                               itemsPerMinuteNeeded,
+                               itemsPerMinuteNeeded / itemPerbelt,
+                               itemsPerMinuteNeeded / qf,
+                               'Thresher',
+                               result );
 
                 // Ca va conté en double si on a besoin de Kindlevine_Extract et Plantmatter_Fiber dans une même recette par exemple
-                console.log( `%c ADD RESULT FOR ${ thresh[ 0 ].input } IN LINE 159`,
-                             'background: #fdd835; color: #000000' );
-                result.push( {
-                                 id:                 crypto.randomUUID(),
-                                 output:             thresh[ 0 ].input,
-                                 items_per_minute:   inputPerMin * ( itemsPerMinuteNeeded / qf ),
-                                 belts:              inputPerMin / itemPerbelt,
-                                 quantity_factories: itemsPerMinuteNeeded / qf,
-                                 produced_in:        'Thresher',
-                             } );
+                // result.push( {
+                //                  id:                 crypto.randomUUID(),
+                //                  output:             thresh[ 0 ].input,
+                //                  items_per_minute:   inputPerMin * ( itemsPerMinuteNeeded / qf ),
+                //                  belts:              inputPerMin / itemPerbelt,
+                //                  quantity_factories: itemsPerMinuteNeeded / qf,
+                //                  produced_in:        'Thresher',
+                //              } );
+
+                updateResults( thresh[ 0 ].input,
+                               inputPerMin * ( itemsPerMinuteNeeded / qf ),
+                               inputPerMin / itemPerbelt,
+                               itemsPerMinuteNeeded / qf,
+                               'Thresher',
+                               result );
             }
         }
     }
