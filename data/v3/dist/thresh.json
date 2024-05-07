@@ -248,17 +248,6 @@
         "base_time": "6.0"
     },
     {
-        "id":        "Kindlevine_Extract_Brick",
-        "input":     "Kindlevine_Extract_Brick",
-        "outputs":   [
-            {
-                "item":     "Kindlevine_Extract",
-                "quantity": "250"
-            }
-        ],
-        "base_time": "60.0"
-    },
-    {
         "id":        "Kindlevine_Stems",
         "input":     "Kindlevine_Stems",
         "outputs":   [
@@ -272,6 +261,17 @@
             }
         ],
         "base_time": "6.0"
+    },
+    {
+        "id":        "Kindlevine_Extract_Brick",
+        "input":     "Kindlevine_Extract_Brick",
+        "outputs":   [
+            {
+                "item":     "Kindlevine_Extract",
+                "quantity": "250"
+            }
+        ],
+        "base_time": "60.0"
     },
     {
         "id":        "Kindlevine_Stems_Washed",

@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import useCraftStore from '@/stores/craft_store';
 
@@ -25,6 +25,12 @@ function findCraft( id: string ): CraftType[] {
     return require( '../data/v3/dist/craft.json' ).filter( ( craft: any ) => craft.output === id );
 }
 
+function findThresh( id: string ): CraftType[] {
+    return require( '../data/v3/dist/thresh.json' ).filter( ( craft: any ) => {
+        return craft.outputs.find( ( output: any ) => output.item === id );
+    } );
+}
+
 // 1 Mining drill
 // --- 3 Iron Frame
 // ------ 6 Iron Ingot per frame (18 Iron Ingot)
@@ -43,13 +49,35 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
     console.log( '%c threeCrafts', 'background: #3DFFC0; color: #000000' );
     const craft = findCraft( id );
-    if ( craft.length === 0 ) {
+    const t     = findThresh( id );
+
+    console.log( `findThresh for ${ id } `, t );
+    if ( craft.length === 0 && t.length === 0 ) {
+        console.log( `%c NO CRAFT OR THRESH FOR ${ id }`, 'background: #FF000A; color: #000000' );
         return [];
     }
 
-    const itemPerbelt             = useCraftStore.getState().beltCapacity;
-    const assemblerEfficiency     = useCraftStore.getState().assemblerEfficiency;
-    const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * assemblerEfficiency;
+    const itemPerbelt         = useCraftStore.getState().beltCapacity;
+    const assemblerEfficiency = useCraftStore.getState().assemblerEfficiency;
+
+    let efficiency = 0;
+    switch ( craft[ 0 ].produced_in ) {
+        case 'Mining_Drill':
+            efficiency = useCraftStore.getState().drillEfficiency;
+            break;
+        case 'Smelter':
+            console.log( '%c IN SMELTER', 'background: #FF80C7; color: #000000' );
+            efficiency = useCraftStore.getState().smelterEfficiency;
+            break;
+        case 'Assembler':
+            efficiency = useCraftStore.getState().assemblerEfficiency;
+            break;
+        case 'Thresher':
+            efficiency = useCraftStore.getState().thresherEfficiency;
+            break;
+    }
+
+    const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * craft[ 0 ].quantity * efficiency;
     const quantityFactories       = itemsPerMinuteNeeded / itemPerMinutePerFactory;
 
 
@@ -57,17 +85,22 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
     console.log( `Item per minute factory ${ itemPerMinutePerFactory }` );
     console.log( `Quantity factories ${ quantityFactories }` );
 
-    result.push( {
-                     id:                 crypto.randomUUID(),
-                     output:             craft[ 0 ].output,
-                     items_per_minute:   itemsPerMinuteNeeded,
-                     belts:              itemsPerMinuteNeeded / itemPerbelt,
-                     quantity_factories: quantityFactories,
-                 } );
+    if ( craft.length > 0 ) {
+        console.log( `%c ADD RESULT FOR ${ craft[ 0 ].output } IN LINE 89`, 'background: #fdd835; color: #000000' );
+        result.push( {
+                         id:                 crypto.randomUUID(),
+                         output:             craft[ 0 ].output,
+                         items_per_minute:   itemsPerMinuteNeeded,
+                         belts:              itemsPerMinuteNeeded / itemPerbelt,
+                         quantity_factories: quantityFactories,
+                         produced_in:        craft[ 0 ].produced_in,
+                     } );
+    }
 
     for ( const input of craft[ 0 ].inputs ) {
         console.log( `CRAFT FOR INPUT : ${ input.item }` );
         const inputCraft = findCraft( input.item );
+        console.log( `findThresh for input ${ id } `, findThresh( id ) );
 
         console.log( inputCraft );
         if ( inputCraft.length > 0 ) {
@@ -76,14 +109,74 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
             const findCirculare = inputCraft[ 0 ].inputs.find( ( input ) => input.item === craft[ 0 ].output );
 
             if ( findCirculare ) {
-                console.log( `CIRCULAR FOR ${ input.item }` );
+                console.log( `%c CIRCULAR FOR ${ input.item }`, 'background: #FFB122; color: #000000' );
+                result.push( {
+                                 id:                 crypto.randomUUID(),
+                                 output:             input.item,
+                                 items_per_minute:   itemsPerMinuteNeeded,
+                                 belts:              itemsPerMinuteNeeded / itemPerbelt,
+                                 quantity_factories: 0,
+                                 produced_in:        null,
+                             } );
+
                 continue;
             }
             console.log( `Input qty ${ input.quantity }` );
 
             // On divise par deux car dans une assembleuse on produit 2 items par craft
             const itemsPerMinuteNeeded1 = input.quantity * itemsPerMinuteNeeded / 2;
+            console.log( `NEDD ${ itemsPerMinuteNeeded1 } ${ input.item }` );
             threeCrafts( input.item, result, itemsPerMinuteNeeded1 );
+        } else {
+            const thresh = findThresh( input.item );
+            if ( thresh.length > 0 ) {
+                console.log( `%c IN THRESH`, 'background: #F600FF; color: #000000' );
+                console.log( `Result for ${ input.item } : `, thresh[ 0 ] );
+
+                const inputPerMin = convertBaseTimeToItembyMinute( thresh[ 0 ].base_time ) * useCraftStore.getState().thresherEfficiency;
+                console.log( `input per minute = ${ inputPerMin } for ${ input.item }` );
+
+                // for ( const output of thresh[ 0 ].outputs ) {
+                //     result.push( {
+                //                      id:                 crypto.randomUUID(),
+                //                      output:             output.item,
+                //                      items_per_minute:   itemsPerMinuteNeeded,
+                //                      belts:              itemsPerMinuteNeeded / itemPerbelt,
+                //                      quantity_factories: itemsPerMinuteNeeded / ( e * output.quantity ),
+                //                      produced_in:        'Thresher',
+                //                  } );
+                //
+                // }
+
+
+                let outputQty = thresh[ 0 ].outputs.find( ( output: any ) => output.item === input.item ).quantity;
+                const ef      = useCraftStore.getState().thresherEfficiency;
+                const qf      = convertBaseTimeToItembyMinute( thresh[ 0 ].base_time ) * outputQty * ef;
+
+
+                // TODO : Gérer les superlfux
+                console.log( `%c ADD RESULT FOR ${ input.item } IN LINE 148`, 'background: #fdd835; color: #000000' );
+                result.push( {
+                                 id:                 crypto.randomUUID(),
+                                 output:             input.item,
+                                 items_per_minute:   itemsPerMinuteNeeded,
+                                 belts:              itemsPerMinuteNeeded / itemPerbelt,
+                                 quantity_factories: itemsPerMinuteNeeded / qf,
+                                 produced_in:        'Thresher',
+                             } );
+
+                // Ca va conté en double si on a besoin de Kindlevine_Extract et Plantmatter_Fiber dans une même recette par exemple
+                console.log( `%c ADD RESULT FOR ${ thresh[ 0 ].input } IN LINE 159`,
+                             'background: #fdd835; color: #000000' );
+                result.push( {
+                                 id:                 crypto.randomUUID(),
+                                 output:             thresh[ 0 ].input,
+                                 items_per_minute:   inputPerMin * ( itemsPerMinuteNeeded / qf ),
+                                 belts:              inputPerMin / itemPerbelt,
+                                 quantity_factories: itemsPerMinuteNeeded / qf,
+                                 produced_in:        'Thresher',
+                             } );
+            }
         }
     }
 
@@ -91,7 +184,7 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 }
 
 function convertBaseTimeToItembyMinute( baseTime: number ): number {
-    return ( 60 / baseTime ) * 2;
+    return ( 60 / baseTime );
 }
 
 const SelectItemWithImage = ( { id, name }: { id: string, name: string } ) => {
@@ -106,6 +199,49 @@ const SelectItemWithImage = ( { id, name }: { id: string, name: string } ) => {
     );
 };
 
+type FactoryImgProps = {
+    produced_in: string | null;
+    current_drill: string;
+    current_smelter: string;
+    current_assembler: string;
+    current_thresher: string;
+}
+
+const FactoryImg: FC<FactoryImgProps> = ( {
+                                              produced_in,
+                                              current_drill,
+                                              current_smelter,
+                                              current_assembler,
+                                              current_thresher,
+                                          } ) => {
+    let factory = '';
+    switch ( produced_in ) {
+        case 'Mining_Drill':
+            factory = current_drill;
+            break;
+        case 'Smelter':
+            factory = current_smelter;
+            break;
+        case 'Assembler':
+            factory = current_assembler;
+            break;
+        case 'Thresher':
+            factory = current_thresher;
+            break;
+    }
+
+    if ( factory === '' ) {
+        return null;
+    }
+
+    return ( <Image className="rounded"
+                    src={ `/items/${ factory }.png` }
+                    alt="Factories"
+                    width={ 48 }
+                    height={ 48 } /> );
+
+};
+
 export default function Home() {
     // const [ baseCraft, setBaseCraft ]                 = useState<CraftType | null>( null );
     const [ item, setItem ]                           = useState<string | null>( null );
@@ -117,6 +253,7 @@ export default function Home() {
         items_per_minute: number;
         belts: number;
         quantity_factories: number;
+        produced_in: string;
     }[]>( [] );
 
     const [ conveyorBelt, setConveyorBelt ] = useState<string>( 'Conveyor_Belt' );
@@ -127,6 +264,9 @@ export default function Home() {
 
     const setBeltCapacity        = useCraftStore( ( state ) => state.setBeltCapacity );
     const setAssemblerEfficiency = useCraftStore( ( state ) => state.setAssemblerEfficiency );
+    const setSmelterEfficiency   = useCraftStore( ( state ) => state.setSmelterEfficiency );
+    const setThresherEfficiency  = useCraftStore( ( state ) => state.setThresherEfficiency );
+    const setDrillEfficiency     = useCraftStore( ( state ) => state.setDrillEfficiency );
 
     function onItemChange( id: string ) {
         setItem( id );
@@ -157,10 +297,24 @@ export default function Home() {
 
     function onDrillChange( id: string ) {
         setDrill( id );
+        if ( id === 'Mining_Drill' ) {
+            setDrillEfficiency( 0.41670001 );
+        } else if ( id === 'Advanced_Mining_Drill' ) {
+            setDrillEfficiency( 0.625 );
+        }
+
+        calculate( 'items_per_minute' );
     }
 
     function onSmelterChange( id: string ) {
         setSmelter( id );
+        if ( id === 'Smelter' ) {
+            setSmelterEfficiency( 1 );
+        } else if ( id === 'Advanced_Smelter' ) {
+            setSmelterEfficiency( 8 );
+        }
+
+        calculate( 'items_per_minute' );
     }
 
     function onAssemblerChange( id: string ) {
@@ -175,12 +329,19 @@ export default function Home() {
 
     function onThresherChange( id: string ) {
         setThresher( id );
+        if ( id === 'Thresher' ) {
+            setThresherEfficiency( 1 );
+        } else {
+            setThresherEfficiency( 2 );
+        }
+
+        calculate( 'items_per_minute' );
     }
 
     useEffect( () => {
         const craft = findCraft( 'Mining_Drill' );
         console.log( craft );
-        console.log( convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * 0.25 );
+        console.log( convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * craft[ 0 ].quantity * 0.25 );
     }, [] );
 
     useEffect( () => {
@@ -206,7 +367,7 @@ export default function Home() {
             const craft = findCraft( item );
             if ( craft.length > 0 ) {
                 const assemblerEfficiency     = 0.25;
-                const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * assemblerEfficiency;
+                const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * craft[ 0 ].quantity * assemblerEfficiency;
                 crafts                        = threeCrafts( item, [], itemPerMinutePerFactory * quantityFactories );
             }
         } else {
@@ -395,33 +556,33 @@ export default function Home() {
                                                                    alt={ result.output }
                                                                    width={ 48 }
                                                                    height={ 48 } />
-                                                            <span>{ result.items_per_minute }</span>
+                                                            <span>{ result.items_per_minute.toFixed( 2 ) }</span>
                                                         </div>
                                                     </TableCell>
                                                     <TableCell>
                                                         <div className="flex items-center gap-5">
                                                             <div className="flex items-center gap-1">
                                                                 <Image className="rounded"
-                                                                       src={ `/items/Conveyor_Belt.png` }
+                                                                       src={ `/items/${ conveyorBelt }.png` }
                                                                        alt="Conveyor Belt"
                                                                        width={ 48 }
                                                                        height={ 48 } />
                                                                 X
                                                             </div>
-                                                            <span>{ result.belts }</span>
+                                                            <span>{ result.belts.toFixed( 2 ) }</span>
                                                         </div>
                                                     </TableCell>
                                                     <TableCell>
                                                         <div className="flex items-center gap-5">
                                                             <div className="flex items-center gap-1">
-                                                                <Image className="rounded"
-                                                                       src={ `/items/Assembler.png` }
-                                                                       alt="Factories"
-                                                                       width={ 48 }
-                                                                       height={ 48 } />
+                                                                <FactoryImg produced_in={ result.produced_in }
+                                                                            current_drill={ drill }
+                                                                            current_smelter={ smelter }
+                                                                            current_assembler={ assembler }
+                                                                            current_thresher={ thresher } />
                                                                 X
                                                             </div>
-                                                            <span>{ result.quantity_factories }</span>
+                                                            <span>{ result.quantity_factories.toFixed( 2 ) }</span>
                                                         </div>
                                                     </TableCell>
                                                 </TableRow>
