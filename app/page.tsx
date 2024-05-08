@@ -10,6 +10,7 @@ import useCraftStore from '@/stores/craft_store';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 
 type CraftType = {
     id: string;
@@ -48,12 +49,21 @@ function getAllItems(): { id: string, name: string }[] {
 }
 
 function findCraft( id: string ): CraftType[] {
-    return require( '../data/v3/dist/craft.json' ).filter( ( craft: any ) => craft.output === id );
+    const blacklistedRecipes = useCraftStore.getState().blacklistedRecipes;
+    const crafts             = require( '../data/v3/dist/craft.json' );
+    return crafts.filter( ( craft: any ) => {
+        const notInBlackList = !blacklistedRecipes.includes( craft.output );
+        return craft.output === id && notInBlackList;
+    } );
 }
 
 function findThresh( id: string ): ThreshType[] {
-    return require( '../data/v3/dist/thresh.json' ).filter( ( craft: any ) => {
-        return craft.outputs.find( ( output: any ) => output.item === id );
+    const blacklistedRecipes = useCraftStore.getState().blacklistedRecipes;
+    const thresh             = require( '../data/v3/dist/thresh.json' );
+    return thresh.filter( ( craft: any ) => {
+        const notInBlackList = !blacklistedRecipes.includes( craft.input );
+        const findOuput      = craft.outputs.find( ( output: any ) => output.item === id );
+        return findOuput && notInBlackList;
     } );
 }
 
@@ -463,6 +473,18 @@ export default function Home() {
 
     }
 
+    function testBlacklist() {
+        const blacklistedRecipes   = useCraftStore.getState().blacklistedRecipes;
+        const addBlacklistedRecipe = useCraftStore.getState().addBlacklistedRecipe;
+
+        console.log( blacklistedRecipes );
+
+        // addBlacklistedRecipe( 'Iron_Ingot_2' );
+        // addBlacklistedRecipe( 'Iron_Ingot_3' );
+        // addBlacklistedRecipe( 'Iron_Ingot_4' );
+        addBlacklistedRecipe( 'Infused_Iron' );
+    }
+
     return (
         <div className="grid h-screen w-full pl-[56px]">
             <div className="flex flex-col">
@@ -499,6 +521,7 @@ export default function Home() {
                                    placeholder="10"
                                    onChange={ onItemsPerMinuteChange } />
                         </div>
+                        <Button onClick={ testBlacklist }>TEST BLACKLIST</Button>
                     </div>
                 </header>
                 <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-4 lg:grid-cols-5">
