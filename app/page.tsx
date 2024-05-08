@@ -7,6 +7,9 @@ import Image from 'next/image';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import useCraftStore from '@/stores/craft_store';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 type CraftType = {
     id: string;
@@ -17,6 +20,29 @@ type CraftType = {
     produced_in: string;
 }
 
+type ThreshType = {
+    id: string;
+    input: string;
+    base_time: number;
+    outputs: { item: string, quantity: number }[];
+
+}
+
+type ResultType = {
+    id: string;
+    output: string;
+    items_per_minute: number;
+    belts: number;
+    quantity_factories: number;
+    produced_in: string;
+    recipes: AlternativeRecipe[];
+    inputs: { item: string, quantity: number }[];
+}
+
+type AlternativeRecipe = {
+    inputs: string[];
+}
+
 function getAllItems(): { id: string, name: string }[] {
     return require( '../data/v3/dist/items.json' );
 }
@@ -25,7 +51,7 @@ function findCraft( id: string ): CraftType[] {
     return require( '../data/v3/dist/craft.json' ).filter( ( craft: any ) => craft.output === id );
 }
 
-function findThresh( id: string ): CraftType[] {
+function findThresh( id: string ): ThreshType[] {
     return require( '../data/v3/dist/thresh.json' ).filter( ( craft: any ) => {
         return craft.outputs.find( ( output: any ) => output.item === id );
     } );
@@ -36,7 +62,9 @@ function updateResults( output: string,
                         belts: number,
                         quantityFactories: number,
                         produced_in: string | null,
-                        results: any[] ) {
+                        inputs: { item: string, quantity: number }[],
+                        recipes: AlternativeRecipe[],
+                        results: ResultType[] ) {
     const existingIndex = results.findIndex( ( result ) => result.output === output );
     if ( existingIndex > -1 ) {
         results[ existingIndex ].items_per_minute += itemsPerMinute;
@@ -49,26 +77,14 @@ function updateResults( output: string,
                           items_per_minute:   itemsPerMinute,
                           belts,
                           quantity_factories: quantityFactories,
-                          produced_in,
+                          produced_in:        produced_in ?? '',
+                          recipes,
+                          inputs,
                       } );
     }
 }
 
-// 1 Mining drill
-// --- 3 Iron Frame
-// ------ 6 Iron Ingot per frame (18 Iron Ingot)
-// --- 20 Iron Components
-// ------ 2 Iron Ingot per component (40 Iron Ingot)
-// Total 58 Iron Ingot
-
-// Quantity  = items par minute
-function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 ): {
-    id: string;
-    output: string;
-    items_per_minute: number;
-    belts: number;
-    quantity_factories: number;
-} {
+function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 ): ResultType[] {
 
     console.log( '%c threeCrafts', 'background: #3DFFC0; color: #000000' );
     const craft = findCraft( id );
@@ -112,20 +128,31 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
         console.log( `%c ADD RESULT FOR ${ craft[ 0 ].output } IN LINE 89`, 'background: #fdd835; color: #000000' );
 
 
+        let shortRecipes: AlternativeRecipe[] = [];
+
+        if ( craft.length > 1 ) {
+            shortRecipes = craft.map( ( craft ) => {
+                return {
+                    inputs: craft.inputs.map( ( input ) => input.item ),
+                };
+            } );
+        }
+
+        const inputs = craft[ 0 ].inputs.map( ( input ) => {
+            return {
+                item:     input.item,
+                quantity: input.quantity,
+            };
+        } );
+
         updateResults( craft[ 0 ].output,
                        itemsPerMinuteNeeded,
                        itemsPerMinuteNeeded / itemPerbelt,
                        quantityFactories,
                        craft[ 0 ].produced_in,
+                       inputs,
+                       shortRecipes,
                        result );
-        // result.push( {
-        //                  id:                 crypto.randomUUID(),
-        //                  output:             craft[ 0 ].output,
-        //                  items_per_minute:   itemsPerMinuteNeeded,
-        //                  belts:              itemsPerMinuteNeeded / itemPerbelt,
-        //                  quantity_factories: quantityFactories,
-        //                  produced_in:        craft[ 0 ].produced_in,
-        //              } );
     }
 
     for ( const input of craft[ 0 ].inputs ) {
@@ -141,15 +168,32 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
             if ( findCirculare ) {
                 console.log( `%c CIRCULAR FOR ${ input.item }`, 'background: #FFB122; color: #000000' );
-                // result.push( {
-                //                  id:                 crypto.randomUUID(),
-                //                  output:             input.item,
-                //                  items_per_minute:   itemsPerMinuteNeeded,
-                //                  belts:              itemsPerMinuteNeeded / itemPerbelt,
-                //                  quantity_factories: 0,
-                //                  produced_in:        null,
-                //              } );
-                updateResults( input.item, itemsPerMinuteNeeded, itemsPerMinuteNeeded / itemPerbelt, 0, null, result );
+                let shortRecipes: AlternativeRecipe[] = [];
+
+                if ( inputCraft.length > 1 ) {
+                    shortRecipes = inputCraft.map( ( craft ) => {
+                        return {
+                            inputs: craft.inputs.map( ( input ) => input.item ),
+                        };
+                    } );
+                }
+
+                const inputs = inputCraft[ 0 ].inputs.map( ( input ) => {
+                    return {
+                        item:     input.item,
+                        quantity: input.quantity,
+                    };
+                } );
+
+
+                updateResults( input.item,
+                               itemsPerMinuteNeeded,
+                               itemsPerMinuteNeeded / itemPerbelt,
+                               0,
+                               null,
+                               inputs,
+                               shortRecipes,
+                               result );
                 continue;
             }
             console.log( `Input qty ${ input.quantity }` );
@@ -194,11 +238,14 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
                 //                  quantity_factories: itemsPerMinuteNeeded / qf,
                 //                  produced_in:        'Thresher',
                 //              } );
+
                 updateResults( input.item,
                                itemsPerMinuteNeeded,
                                itemsPerMinuteNeeded / itemPerbelt,
                                itemsPerMinuteNeeded / qf,
                                'Thresher',
+                               [],
+                               [],
                                result );
 
                 // Ca va conté en double si on a besoin de Kindlevine_Extract et Plantmatter_Fiber dans une même recette par exemple
@@ -216,6 +263,8 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
                                inputPerMin / itemPerbelt,
                                itemsPerMinuteNeeded / qf,
                                'Thresher',
+                               [],
+                               [],
                                result );
             }
         }
@@ -288,14 +337,7 @@ export default function Home() {
     const [ item, setItem ]                           = useState<string | null>( null );
     const [ quantityFactories, setQuantityFactories ] = useState<number>( 1 );
     const [ itemsPerMinute, setItemsPerMinute ]       = useState<number>( 5 );
-    const [ results, setResults ]                     = useState<{
-        id: string;
-        output: string;
-        items_per_minute: number;
-        belts: number;
-        quantity_factories: number;
-        produced_in: string;
-    }[]>( [] );
+    const [ results, setResults ]                     = useState<ResultType[]>( [] );
 
     const [ conveyorBelt, setConveyorBelt ] = useState<string>( 'Conveyor_Belt' );
     const [ drill, setDrill ]               = useState<string>( 'Mining_Drill' );
@@ -403,7 +445,7 @@ export default function Home() {
             return;
         }
 
-        let crafts = [];
+        let crafts: ResultType[] = [];
         if ( origin === 'quantity_factories' ) {
             const craft = findCraft( item );
             if ( craft.length > 0 ) {
@@ -420,39 +462,6 @@ export default function Home() {
         setResults( crafts );
 
     }
-
-    // function calculate( origin: string ) {
-    //     console.log( '%c ON calculate', 'background: #fdd835; color: #000000' );
-    //     const craft = baseCraft;
-    //     if ( !craft ) {
-    //         return;
-    //     }
-    //     console.log( craft );
-    //
-    //     const beltCapacity = 240;
-    //     let result         = {
-    //         id:                 crypto.randomUUID(),
-    //         items_per_minute:   convertBaseTimeToItembyMinute( craft.base_time ),
-    //         belts:              convertBaseTimeToItembyMinute( craft.base_time ) / beltCapacity,
-    //         quantity_factories: 1,
-    //     };
-    //
-    //     if ( origin === 'quantity_factories' ) {
-    //         console.log( 'quantity_factories' );
-    //         result.quantity_factories = quantityFactories;
-    //         result.items_per_minute   = convertBaseTimeToItembyMinute( craft.base_time ) * quantityFactories;
-    //         result.belts              = result.items_per_minute / beltCapacity;
-    //         setItemsPerMinute( result.items_per_minute );
-    //     } else if ( origin === 'items_per_minute' ) {
-    //         console.log( 'items_per_minute' );
-    //         result.items_per_minute   = itemsPerMinute;
-    //         result.quantity_factories = itemsPerMinute / convertBaseTimeToItembyMinute( craft.base_time );
-    //         result.belts              = itemsPerMinute / beltCapacity;
-    //         setQuantityFactories( result.quantity_factories );
-    //     }
-    //
-    //     setResults( [ result ] );
-    // }
 
     return (
         <div className="grid h-screen w-full pl-[56px]">
@@ -580,6 +589,7 @@ export default function Home() {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
+                                        <TableHead className="w-16"></TableHead>
                                         <TableHead>Items/m</TableHead>
                                         <TableHead>Belts</TableHead>
                                         <TableHead>Factories</TableHead>
@@ -589,44 +599,120 @@ export default function Home() {
                                     {
                                         results && (
                                             results.map( ( result, index ) => (
-                                                <TableRow key={ result.id }>
-                                                    <TableCell className="font-medium">
-                                                        <div className="flex items-center gap-5">
-                                                            <Image className="rounded"
-                                                                   src={ `/items/${ result.output }.png` }
-                                                                   alt={ result.output }
-                                                                   width={ 48 }
-                                                                   height={ 48 } />
-                                                            <span>{ result.items_per_minute.toFixed( 2 ) }</span>
-                                                        </div>
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        <div className="flex items-center gap-5">
-                                                            <div className="flex items-center gap-1">
-                                                                <Image className="rounded"
-                                                                       src={ `/items/${ conveyorBelt }.png` }
-                                                                       alt="Conveyor Belt"
-                                                                       width={ 48 }
-                                                                       height={ 48 } />
-                                                                X
-                                                            </div>
-                                                            <span>{ result.belts.toFixed( 2 ) }</span>
-                                                        </div>
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        <div className="flex items-center gap-5">
-                                                            <div className="flex items-center gap-1">
-                                                                <FactoryImg produced_in={ result.produced_in }
-                                                                            current_drill={ drill }
-                                                                            current_smelter={ smelter }
-                                                                            current_assembler={ assembler }
-                                                                            current_thresher={ thresher } />
-                                                                X
-                                                            </div>
-                                                            <span>{ result.quantity_factories.toFixed( 2 ) }</span>
-                                                        </div>
-                                                    </TableCell>
-                                                </TableRow>
+                                                <Collapsible asChild key={ result.id }>
+                                                    <>
+                                                        <TableRow>
+                                                            <CollapsibleTrigger asChild>
+                                                                <TableCell className="group w-16 cursor-pointer bg-blue-100">
+                                                                    <ChevronDown className="group-hover:text-blue-500" />
+                                                                </TableCell>
+                                                            </CollapsibleTrigger>
+                                                            <TableCell className="font-medium bg-red-100">
+                                                                <div className="flex items-center gap-5">
+                                                                    <Image className="rounded"
+                                                                           src={ `/items/${ result.output }.png` }
+                                                                           alt={ result.output }
+                                                                           width={ 48 }
+                                                                           height={ 48 } />
+                                                                    <span>{ result.items_per_minute.toFixed( 2 ) }</span>
+                                                                </div>
+                                                            </TableCell>
+                                                            <TableCell className="bg-green-100">
+                                                                <div className="flex items-center gap-5">
+                                                                    <div className="flex items-center gap-1">
+                                                                        <Image className="rounded"
+                                                                               src={ `/items/${ conveyorBelt }.png` }
+                                                                               alt="Conveyor Belt"
+                                                                               width={ 48 }
+                                                                               height={ 48 } />
+                                                                        X
+                                                                    </div>
+                                                                    <span>{ result.belts.toFixed( 2 ) }</span>
+                                                                </div>
+                                                            </TableCell>
+                                                            <TableCell className="bg-purple-100">
+                                                                <div className="flex items-center gap-5">
+                                                                    <div className="flex items-center gap-1">
+                                                                        <FactoryImg produced_in={ result.produced_in }
+                                                                                    current_drill={ drill }
+                                                                                    current_smelter={ smelter }
+                                                                                    current_assembler={ assembler }
+                                                                                    current_thresher={ thresher } />
+                                                                        X
+                                                                    </div>
+                                                                    <span>{ result.quantity_factories.toFixed( 2 ) }</span>
+                                                                </div>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                        <CollapsibleContent asChild>
+                                                            <TableRow>
+                                                                <TableCell colSpan={ 4 } className="bg-cyan-50">
+                                                                    <Tabs defaultValue="item" className="w-[400px]">
+                                                                        <TabsList>
+                                                                            <TabsTrigger value="item">Items</TabsTrigger>
+                                                                            <TabsTrigger value="recipe">Recipes</TabsTrigger>
+                                                                        </TabsList>
+                                                                        <TabsContent value="item">
+                                                                            {
+                                                                                result.inputs.map( ( input, index ) => (
+                                                                                    <div key={ index }
+                                                                                         className="flex items-center gap-5 space-y-2">
+                                                                                        <Image className="rounded"
+                                                                                               src={ `/items/${ input.item }.png` }
+                                                                                               alt={ input.item }
+                                                                                               width={ 24 }
+                                                                                               height={ 24 } />
+                                                                                        <ArrowRight />
+                                                                                        <Image className="rounded"
+                                                                                               src={ `/items/${ result.output }.png` }
+                                                                                               alt={ result.output }
+                                                                                               width={ 24 }
+                                                                                               height={ 24 } />
+                                                                                    </div>
+                                                                                ) )
+                                                                            }
+
+                                                                        </TabsContent>
+                                                                        <TabsContent value="recipe">
+                                                                            <div className="flex-col items-center gap-5">
+                                                                                {
+                                                                                    result.recipes.map( ( alternative,
+                                                                                                          index ) => (
+                                                                                        <div key={ index }>
+                                                                                            <p>Aletrnative { index + 1 }</p>
+                                                                                            {
+                                                                                                alternative.inputs.map(
+                                                                                                    ( input,
+                                                                                                      index ) => (
+                                                                                                        <div key={ index }
+                                                                                                             className="flex items-center gap-5 space-y-2">
+                                                                                                            <Image
+                                                                                                                className="rounded"
+                                                                                                                src={ `/items/${ input }.png` }
+                                                                                                                alt={ input }
+                                                                                                                width={ 24 }
+                                                                                                                height={ 24 } />
+                                                                                                            <ArrowRight />
+                                                                                                            <Image
+                                                                                                                className="rounded"
+                                                                                                                src={ `/items/${ result.output }.png` }
+                                                                                                                alt={ result.output }
+                                                                                                                width={ 24 }
+                                                                                                                height={ 24 } />
+                                                                                                        </div>
+                                                                                                    ) )
+                                                                                            }
+                                                                                        </div>
+                                                                                    ) )
+                                                                                }
+                                                                            </div>
+                                                                        </TabsContent>
+                                                                    </Tabs>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </CollapsibleContent>
+                                                    </>
+                                                </Collapsible>
                                             ) )
                                         )
                                     }
