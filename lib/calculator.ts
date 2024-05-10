@@ -97,16 +97,13 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
     console.log( `Quantity factories ${ quantityFactories }` );
 
     if ( craft.length > 0 ) {
-        let shortRecipes: AlternativeRecipe[] = [];
-
-        if ( craft.length > 1 ) {
-            shortRecipes = craft.map( ( craft ) => {
-                return {
-                    id:     craft.id,
-                    inputs: craft.inputs.map( ( input ) => input.item ),
-                };
-            } );
-        }
+        const shortRecipes = craft.map( ( craft ) => {
+            return {
+                id:     craft.id,
+                inputs: craft.inputs.map( ( input ) => input.item ),
+            };
+        } );
+        console.log( `shortRecipes for ${ id }`, shortRecipes );
 
         const inputs = craft[ firstIndexNotBlacklisted ].inputs.map( ( input ) => {
             return {
@@ -142,16 +139,12 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
             if ( findCirculare ) {
                 console.log( `%c CIRCULAR FOR ${ input.item }`, 'background: #FFB122; color: #000000' );
-                let shortRecipes: AlternativeRecipe[] = [];
-
-                if ( inputCraft.length > 1 ) {
-                    shortRecipes = inputCraft.map( ( craft ) => {
-                        return {
-                            id:     craft.id,
-                            inputs: craft.inputs.map( ( input ) => input.item ),
-                        };
-                    } );
-                }
+                const shortRecipes = inputCraft.map( ( craft ) => {
+                    return {
+                        id:     craft.id,
+                        inputs: craft.inputs.map( ( input ) => input.item ),
+                    };
+                } );
 
                 const inputs = inputCraft[ firstIndexInputNotBlacklisted ].inputs.map( ( input ) => {
                     return {
