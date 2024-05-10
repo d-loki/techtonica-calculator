@@ -7,10 +7,11 @@ import Image from 'next/image';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import useCraftStore from '@/stores/craft_store';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Eye, EyeOff, Trash } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 type CraftType = {
     id: string;
@@ -41,6 +42,7 @@ type ResultType = {
 }
 
 type AlternativeRecipe = {
+    id: string;
     inputs: string[];
 }
 
@@ -51,19 +53,25 @@ function getAllItems(): { id: string, name: string }[] {
 function findCraft( id: string ): CraftType[] {
     const blacklistedRecipes = useCraftStore.getState().blacklistedRecipes;
     const crafts             = require( '../data/v3/dist/craft.json' );
-    return crafts.filter( ( craft: any ) => {
-        const notInBlackList = !blacklistedRecipes.includes( craft.output );
-        return craft.output === id && notInBlackList;
-    } );
+    // return crafts.filter( ( craft: any ) => {
+    //     const notInBlackList = !blacklistedRecipes.includes( craft.id );
+    //     return craft.output === id && notInBlackList;
+    // } );
+
+    return crafts.filter( ( craft: any ) => ( craft.output === id ) );
 }
 
 function findThresh( id: string ): ThreshType[] {
     const blacklistedRecipes = useCraftStore.getState().blacklistedRecipes;
     const thresh             = require( '../data/v3/dist/thresh.json' );
+    // return thresh.filter( ( craft: any ) => {
+    //     const notInBlackList = !blacklistedRecipes.includes( craft.id );
+    //     const findOuput      = craft.outputs.find( ( output: any ) => output.item === id );
+    //     return findOuput && notInBlackList;
+    // } );
+
     return thresh.filter( ( craft: any ) => {
-        const notInBlackList = !blacklistedRecipes.includes( craft.input );
-        const findOuput      = craft.outputs.find( ( output: any ) => output.item === id );
-        return findOuput && notInBlackList;
+        return craft.outputs.find( ( output: any ) => output.item === id );
     } );
 }
 
@@ -109,8 +117,13 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
     const itemPerbelt         = useCraftStore.getState().beltCapacity;
     const assemblerEfficiency = useCraftStore.getState().assemblerEfficiency;
 
+    const firstIndexNotBlacklisted = craft.findIndex( ( craft ) => {
+        return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+    } );
+    console.log( 'firstIndexNotBlacklisted', firstIndexNotBlacklisted );
+
     let efficiency = 0;
-    switch ( craft[ 0 ].produced_in ) {
+    switch ( craft[ firstIndexNotBlacklisted ].produced_in ) {
         case 'Mining_Drill':
             efficiency = useCraftStore.getState().drillEfficiency;
             break;
@@ -126,7 +139,7 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
             break;
     }
 
-    const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * craft[ 0 ].quantity * efficiency;
+    const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ firstIndexNotBlacklisted ].base_time ) * craft[ firstIndexNotBlacklisted ].quantity * efficiency;
     const quantityFactories       = itemsPerMinuteNeeded / itemPerMinutePerFactory;
 
 
@@ -135,37 +148,35 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
     console.log( `Quantity factories ${ quantityFactories }` );
 
     if ( craft.length > 0 ) {
-        console.log( `%c ADD RESULT FOR ${ craft[ 0 ].output } IN LINE 89`, 'background: #fdd835; color: #000000' );
-
-
         let shortRecipes: AlternativeRecipe[] = [];
 
         if ( craft.length > 1 ) {
             shortRecipes = craft.map( ( craft ) => {
                 return {
+                    id:     craft.id,
                     inputs: craft.inputs.map( ( input ) => input.item ),
                 };
             } );
         }
 
-        const inputs = craft[ 0 ].inputs.map( ( input ) => {
+        const inputs = craft[ firstIndexNotBlacklisted ].inputs.map( ( input ) => {
             return {
                 item:     input.item,
                 quantity: input.quantity,
             };
         } );
 
-        updateResults( craft[ 0 ].output,
+        updateResults( craft[ firstIndexNotBlacklisted ].output,
                        itemsPerMinuteNeeded,
                        itemsPerMinuteNeeded / itemPerbelt,
                        quantityFactories,
-                       craft[ 0 ].produced_in,
+                       craft[ firstIndexNotBlacklisted ].produced_in,
                        inputs,
                        shortRecipes,
                        result );
     }
 
-    for ( const input of craft[ 0 ].inputs ) {
+    for ( const input of craft[ firstIndexNotBlacklisted ].inputs ) {
         console.log( `CRAFT FOR INPUT : ${ input.item }` );
         const inputCraft = findCraft( input.item );
         console.log( `findThresh for input ${ id } `, findThresh( id ) );
@@ -173,8 +184,12 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
         console.log( inputCraft );
         if ( inputCraft.length > 0 ) {
 
+            const firstIndexInputNotBlacklisted = inputCraft.findIndex( ( craft ) => {
+                return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+            } );
+
             // Si dans les inputs du craft on à le dernier output du dernier craft on stop afin de ne pas avoir de circulaire
-            const findCirculare = inputCraft[ 0 ].inputs.find( ( input ) => input.item === craft[ 0 ].output );
+            const findCirculare = inputCraft[ firstIndexInputNotBlacklisted ].inputs.find( ( input ) => input.item === craft[ firstIndexNotBlacklisted ].output );
 
             if ( findCirculare ) {
                 console.log( `%c CIRCULAR FOR ${ input.item }`, 'background: #FFB122; color: #000000' );
@@ -183,12 +198,13 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
                 if ( inputCraft.length > 1 ) {
                     shortRecipes = inputCraft.map( ( craft ) => {
                         return {
+                            id:     craft.id,
                             inputs: craft.inputs.map( ( input ) => input.item ),
                         };
                     } );
                 }
 
-                const inputs = inputCraft[ 0 ].inputs.map( ( input ) => {
+                const inputs = inputCraft[ firstIndexInputNotBlacklisted ].inputs.map( ( input ) => {
                     return {
                         item:     input.item,
                         quantity: input.quantity,
@@ -216,38 +232,24 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
             const thresh = findThresh( input.item );
             if ( thresh.length > 0 ) {
                 console.log( `%c IN THRESH`, 'background: #F600FF; color: #000000' );
-                console.log( `Result for ${ input.item } : `, thresh[ 0 ] );
 
-                const inputPerMin = convertBaseTimeToItembyMinute( thresh[ 0 ].base_time ) * useCraftStore.getState().thresherEfficiency;
+
+                const firstIndexThreshNotBlacklisted = thresh.findIndex( ( craft ) => {
+                    return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+                } );
+
+                console.log( `Result for ${ input.item } : `, thresh[ firstIndexThreshNotBlacklisted ] );
+
+                const inputPerMin = convertBaseTimeToItembyMinute( thresh[ firstIndexThreshNotBlacklisted ].base_time ) * useCraftStore.getState().thresherEfficiency;
                 console.log( `input per minute = ${ inputPerMin } for ${ input.item }` );
 
-                // for ( const output of thresh[ 0 ].outputs ) {
-                //     result.push( {
-                //                      id:                 crypto.randomUUID(),
-                //                      output:             output.item,
-                //                      items_per_minute:   itemsPerMinuteNeeded,
-                //                      belts:              itemsPerMinuteNeeded / itemPerbelt,
-                //                      quantity_factories: itemsPerMinuteNeeded / ( e * output.quantity ),
-                //                      produced_in:        'Thresher',
-                //                  } );
-                //
-                // }
 
-
-                let outputQty = thresh[ 0 ].outputs.find( ( output: any ) => output.item === input.item ).quantity;
+                let outputQty = thresh[ firstIndexThreshNotBlacklisted ].outputs.find( ( output: any ) => output.item === input.item ).quantity;
                 const ef      = useCraftStore.getState().thresherEfficiency;
-                const qf      = convertBaseTimeToItembyMinute( thresh[ 0 ].base_time ) * outputQty * ef;
+                const qf      = convertBaseTimeToItembyMinute( thresh[ firstIndexThreshNotBlacklisted ].base_time ) * outputQty * ef;
 
 
                 // TODO : Gérer les superlfux
-                // result.push( {
-                //                  id:                 crypto.randomUUID(),
-                //                  output:             input.item,
-                //                  items_per_minute:   itemsPerMinuteNeeded,
-                //                  belts:              itemsPerMinuteNeeded / itemPerbelt,
-                //                  quantity_factories: itemsPerMinuteNeeded / qf,
-                //                  produced_in:        'Thresher',
-                //              } );
 
                 updateResults( input.item,
                                itemsPerMinuteNeeded,
@@ -258,17 +260,8 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
                                [],
                                result );
 
-                // Ca va conté en double si on a besoin de Kindlevine_Extract et Plantmatter_Fiber dans une même recette par exemple
-                // result.push( {
-                //                  id:                 crypto.randomUUID(),
-                //                  output:             thresh[ 0 ].input,
-                //                  items_per_minute:   inputPerMin * ( itemsPerMinuteNeeded / qf ),
-                //                  belts:              inputPerMin / itemPerbelt,
-                //                  quantity_factories: itemsPerMinuteNeeded / qf,
-                //                  produced_in:        'Thresher',
-                //              } );
-
-                updateResults( thresh[ 0 ].input,
+                // Ca va compté en double si on a besoin de Kindlevine_Extract et Plantmatter_Fiber dans une même recette par exemple
+                updateResults( thresh[ firstIndexThreshNotBlacklisted ].input,
                                inputPerMin * ( itemsPerMinuteNeeded / qf ),
                                inputPerMin / itemPerbelt,
                                itemsPerMinuteNeeded / qf,
@@ -342,8 +335,44 @@ const FactoryImg: FC<FactoryImgProps> = ( {
 
 };
 
+const BlacklistItem = ( { recipe, handleRemoveClick }: {
+    recipe: string,
+    handleRemoveClick: ( recipe: string ) => void
+} ) => {
+    return (
+        <div key={ recipe } className="p-2 sm:w-1/2 w-full">
+            <div className="bg-gray-100 rounded flex p-4 h-full items-center gap-5">
+                <span className="font-medium">{ recipe }</span>
+                <Trash className="cursor-pointer ml-auto text-red-500 w-5 h-5 flex-shrink-0 mr-4"
+                       onClick={ () => handleRemoveClick( recipe ) } />
+            </div>
+        </div>
+    );
+
+};
+
+const BlacklistItems = () => {
+    const blacklistedRecipes      = useCraftStore.getState().blacklistedRecipes;
+    const removeBlacklistedRecipe = useCraftStore.getState().removeBlacklistedRecipe;
+    const [ recipes, setRecipes ] = useState<string[]>( blacklistedRecipes );
+
+    const handleRemoveClick = ( recipe: string ) => {
+        removeBlacklistedRecipe( recipe );
+        setRecipes( ( recipes ) => recipes.filter( ( r ) => r !== recipe ) );
+    };
+
+    return (
+        <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
+            {
+                recipes.map( ( recipe ) => (
+                    <BlacklistItem key={ recipe } recipe={ recipe } handleRemoveClick={ handleRemoveClick } />
+                ) )
+            }
+        </div>
+    );
+};
+
 export default function Home() {
-    // const [ baseCraft, setBaseCraft ]                 = useState<CraftType | null>( null );
     const [ item, setItem ]                           = useState<string | null>( null );
     const [ quantityFactories, setQuantityFactories ] = useState<number>( 1 );
     const [ itemsPerMinute, setItemsPerMinute ]       = useState<number>( 5 );
@@ -360,6 +389,10 @@ export default function Home() {
     const setSmelterEfficiency   = useCraftStore( ( state ) => state.setSmelterEfficiency );
     const setThresherEfficiency  = useCraftStore( ( state ) => state.setThresherEfficiency );
     const setDrillEfficiency     = useCraftStore( ( state ) => state.setDrillEfficiency );
+
+    const blacklistedRecipesInStore                     = useCraftStore.getState().blacklistedRecipes;
+    const [ blacklistedRecipes, setBlacklistedRecipes ] = useState<string[]>( blacklistedRecipesInStore );
+
 
     function onItemChange( id: string ) {
         setItem( id );
@@ -432,12 +465,6 @@ export default function Home() {
     }
 
     useEffect( () => {
-        const craft = findCraft( 'Mining_Drill' );
-        console.log( craft );
-        console.log( convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * craft[ 0 ].quantity * 0.25 );
-    }, [] );
-
-    useEffect( () => {
         // calculate( 'quantity_factories' );
         calculate( 'items_per_minute' );
     }, [ item ] );
@@ -457,10 +484,14 @@ export default function Home() {
 
         let crafts: ResultType[] = [];
         if ( origin === 'quantity_factories' ) {
-            const craft = findCraft( item );
+            const craft                    = findCraft( item );
+            const firstIndexNotBlacklisted = craft.findIndex( ( craft ) => {
+                return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+            } );
+
             if ( craft.length > 0 ) {
                 const assemblerEfficiency     = 0.25;
-                const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ 0 ].base_time ) * craft[ 0 ].quantity * assemblerEfficiency;
+                const itemPerMinutePerFactory = convertBaseTimeToItembyMinute( craft[ firstIndexNotBlacklisted ].base_time ) * craft[ firstIndexNotBlacklisted ].quantity * assemblerEfficiency;
                 crafts                        = threeCrafts( item, [], itemPerMinutePerFactory * quantityFactories );
             }
         } else {
@@ -483,6 +514,23 @@ export default function Home() {
         // addBlacklistedRecipe( 'Iron_Ingot_3' );
         // addBlacklistedRecipe( 'Iron_Ingot_4' );
         addBlacklistedRecipe( 'Infused_Iron' );
+    }
+
+    function addToBlacklist( recipe: string ) {
+        const addBlacklistedRecipe = useCraftStore.getState().addBlacklistedRecipe;
+        addBlacklistedRecipe( recipe );
+        setBlacklistedRecipes( ( recipes ) => [ ...recipes, recipe ] );
+    }
+
+    function removeFromBlacklist( recipe: string ) {
+        const removeBlacklistedRecipe = useCraftStore.getState().removeBlacklistedRecipe;
+        removeBlacklistedRecipe( recipe );
+        setBlacklistedRecipes( ( recipes ) => recipes.filter( ( r ) => r !== recipe ) );
+    }
+
+    function isBlacklisted( recipe: string ) {
+        console.log( `isBlacklisted ${ recipe } : `, blacklistedRecipes.includes( recipe ) );
+        return blacklistedRecipes.includes( recipe );
     }
 
     return (
@@ -522,6 +570,16 @@ export default function Home() {
                                    onChange={ onItemsPerMinuteChange } />
                         </div>
                         <Button onClick={ testBlacklist }>TEST BLACKLIST</Button>
+                        <Dialog>
+                            <DialogTrigger>Open</DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Blacklist recipes</DialogTitle>
+                                </DialogHeader>
+                                <BlacklistItems />
+                            </DialogContent>
+                        </Dialog>
+
                     </div>
                 </header>
                 <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-4 lg:grid-cols-5">
@@ -702,7 +760,7 @@ export default function Home() {
                                                                                     result.recipes.map( ( alternative,
                                                                                                           index ) => (
                                                                                         <div key={ index }>
-                                                                                            <p>Aletrnative { index + 1 }</p>
+                                                                                            <p>Alternative { index + 1 }</p>
                                                                                             {
                                                                                                 alternative.inputs.map(
                                                                                                     ( input,
@@ -722,6 +780,26 @@ export default function Home() {
                                                                                                                 alt={ result.output }
                                                                                                                 width={ 24 }
                                                                                                                 height={ 24 } />
+                                                                                                            {
+                                                                                                                isBlacklisted(
+                                                                                                                    alternative.id ) ? (
+                                                                                                                    <Button
+                                                                                                                        variant="destructive"
+                                                                                                                        size="icon"
+                                                                                                                        onClick={ () => removeFromBlacklist(
+                                                                                                                            alternative.id ) }>
+                                                                                                                        <EyeOff
+                                                                                                                            className="size-4" /></Button>
+                                                                                                                ) : (
+                                                                                                                    <Button
+                                                                                                                        onClick={ () => addToBlacklist(
+                                                                                                                            alternative.id ) }>
+                                                                                                                        <Eye
+                                                                                                                            className="size-4" />
+                                                                                                                    </Button>
+
+                                                                                                                )
+                                                                                                            }
                                                                                                         </div>
                                                                                                     ) )
                                                                                             }
