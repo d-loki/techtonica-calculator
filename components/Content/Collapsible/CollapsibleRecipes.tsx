@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { TabsContent } from '@/components/ui/tabs';
 import useCraftStore from '@/stores/craft_store';
 import ResultType from '@/type/ResultType';
+import ItemImage from '@/components/Global/ItemImage';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Props = {
     result: ResultType;
@@ -27,43 +27,46 @@ const CollapsibleRecipes: FC<Props> = ( { result } ) => {
                     result.recipes.map( ( alternative,
                                           index ) => (
                         <div key={ index }>
-                            <p>Alternative { index + 1 }</p>
                             {
                                 alternative.inputs.map(
                                     ( input,
                                       index ) => (
-                                        <div key={ index }
-                                             className="flex items-center gap-5 space-y-2">
-                                            <Image
-                                                className="rounded"
-                                                src={ `/items/${ input }.png` }
-                                                alt={ input }
-                                                width={ 24 }
-                                                height={ 24 } />
-                                            <ArrowRight />
-                                            <Image
-                                                className="rounded"
-                                                src={ `/items/${ result.output }.png` }
-                                                alt={ result.output }
-                                                width={ 24 }
-                                                height={ 24 } />
+                                        <div key={ index } className="flex items-center gap-3 my-5">
+                                            <ItemImage size="xs" src={ `/items/${ input }.png` } alt={ input } />
+                                            <ArrowRight className="h-4 w-4" />
+                                            <ItemImage size="xs"
+                                                       src={ `/items/${ result.output }.png` }
+                                                       alt={ result.output } />
                                             {
                                                 isBlacklisted(
                                                     alternative.id ) ? (
-                                                    <Button
-                                                        variant="destructive"
-                                                        size="icon"
-                                                        onClick={ () => removeFromBlacklist(
-                                                            alternative.id ) }>
-                                                        <EyeOff
-                                                            className="size-4" /></Button>
+                                                    <TooltipProvider>
+                                                        <Tooltip>
+                                                            <TooltipTrigger>
+                                                                <EyeOff
+                                                                    onClick={ () => removeFromBlacklist(
+                                                                        alternative.id ) }
+                                                                    className="size-5 cursor-pointer" />
+                                                            </TooltipTrigger>
+                                                            <TooltipContent className="mb-5">
+                                                                <p>Remove from blacklist</p>
+                                                            </TooltipContent>
+                                                        </Tooltip>
+                                                    </TooltipProvider>
+
                                                 ) : (
-                                                    <Button
-                                                        onClick={ () => addToBlacklist(
-                                                            alternative.id ) }>
-                                                        <Eye
-                                                            className="size-4" />
-                                                    </Button>
+                                                    <TooltipProvider>
+                                                        <Tooltip>
+                                                            <TooltipTrigger asChild>
+                                                                <Eye
+                                                                    onClick={ () => addToBlacklist( alternative.id ) }
+                                                                    className="size-5 cursor-pointer" />
+                                                            </TooltipTrigger>
+                                                            <TooltipContent className="mb-5">
+                                                                <p>Add to blacklist</p>
+                                                            </TooltipContent>
+                                                        </Tooltip>
+                                                    </TooltipProvider>
 
                                                 )
                                             }

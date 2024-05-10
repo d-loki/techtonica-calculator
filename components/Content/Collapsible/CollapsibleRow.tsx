@@ -13,8 +13,8 @@ type Props = {
 const CollapsibleRow: FC<Props> = ( { result } ) => {
     return (
         <CollapsibleContent asChild>
-            <TableRow>
-                <TableCell colSpan={ 4 } className="bg-cyan-50">
+            <TableRow className="hover:bg-muted/50 bg-muted/50 rounded">
+                <TableCell colSpan={ 4 }>
                     <Tabs defaultValue="item" className="w-[400px]">
                         <TabsList>
                             <TabsTrigger value="item">Items</TabsTrigger>

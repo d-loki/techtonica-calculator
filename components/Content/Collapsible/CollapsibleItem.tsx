@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { TabsContent } from '@/components/ui/tabs';
 import ResultType from '@/type/ResultType';
+import ItemImage from '@/components/Global/ItemImage';
 
 type Props = {
     result: ResultType;
@@ -10,22 +10,13 @@ type Props = {
 
 const CollapsibleItem: FC<Props> = ( { result } ) => {
     return (
-        <TabsContent value="item">
+        <TabsContent value="item" className="px-5">
             {
                 result.inputs.map( ( input, index ) => (
-                    <div key={ index }
-                         className="flex items-center gap-5 space-y-2">
-                        <Image className="rounded"
-                               src={ `/items/${ input.item }.png` }
-                               alt={ input.item }
-                               width={ 24 }
-                               height={ 24 } />
-                        <ArrowRight />
-                        <Image className="rounded"
-                               src={ `/items/${ result.output }.png` }
-                               alt={ result.output }
-                               width={ 24 }
-                               height={ 24 } />
+                    <div key={ index } className="flex items-center gap-3 my-2">
+                        <ItemImage size="xs" src={ `/items/${ input.item }.png` } alt={ input.item } />
+                        <ArrowRight className="h-4 w-4" />
+                        <ItemImage size="xs" src={ `/items/${ result.output }.png` } alt={ result.output } />
                     </div>
                 ) )
             }

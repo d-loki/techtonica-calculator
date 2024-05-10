@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
 import useCraftStore from '@/stores/craft_store';
+import ItemImage from '@/components/Global/ItemImage';
 
 type FactoryImgProps = {
     produced_in: string | null;
@@ -32,11 +32,7 @@ const FactoryImg: FC<FactoryImgProps> = ( { produced_in } ) => {
         return null;
     }
 
-    return ( <Image className="rounded"
-                    src={ `/items/${ factory }.png` }
-                    alt="Factories"
-                    width={ 48 }
-                    height={ 48 } /> );
+    return ( <ItemImage src={ `/items/${ factory }.png` } alt={ factory } /> );
 
 };
 
