@@ -178,14 +178,14 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
             console.log( `NEDD ${ itemsPerMinuteNeeded1 } ${ input.item }` );
             threeCrafts( input.item, result, itemsPerMinuteNeeded1 );
         } else {
-            const thresh = findThresh( input.item );
+            const thresh                         = findThresh( input.item );
+            const firstIndexThreshNotBlacklisted = thresh.findIndex( ( craft ) => {
+                return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+            } );
+
             if ( thresh.length > 0 ) {
                 console.log( `%c IN THRESH`, 'background: #F600FF; color: #000000' );
 
-
-                const firstIndexThreshNotBlacklisted = thresh.findIndex( ( craft ) => {
-                    return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
-                } );
 
                 console.log( `Result for ${ input.item } : `, thresh[ firstIndexThreshNotBlacklisted ] );
 
@@ -193,7 +193,8 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
                 console.log( `input per minute = ${ inputPerMin } for ${ input.item }` );
 
 
-                let outputQty = thresh[ firstIndexThreshNotBlacklisted ].outputs.find( ( output: any ) => output.item === input.item ).quantity;
+                const output  = thresh[ firstIndexThreshNotBlacklisted ].outputs.find( ( output: any ) => output.item === input.item );
+                let outputQty = output ? output.quantity : 1;
                 const ef      = useCraftStore.getState().thresherEfficiency;
                 const qf      = convertBaseTimeToItembyMinute( thresh[ firstIndexThreshNotBlacklisted ].base_time ) * outputQty * ef;
 
