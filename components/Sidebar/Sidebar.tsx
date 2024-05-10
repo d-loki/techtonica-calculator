@@ -1,26 +1,94 @@
-import React, { useState } from 'react';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select';
-import SelectItemWithImage from '@/components/Global/SelectItemWithImage';
+import React from 'react';
 import useCraftStore from '@/stores/craft_store';
 import calculate from '@/lib/calculator';
+import CustomSelect from '@/components/Sidebar/CustomSelect';
+
+const selects = [
+    {
+        id:      'conveyor_belt',
+        label:   'Default transport belt',
+        value:   'Conveyor_Belt',
+        options: [
+            { id: 'Conveyor_Belt', name: 'Conveyer Belt' },
+            { id: 'Advanced_Conveyor_Belt', name: 'Conveyer Belt MK2' },
+            { id: 'Advanced_Conveyor_Belt_2', name: 'Conveyer Belt MK3' },
+        ],
+    },
+    {
+        id:      'drill',
+        label:   'Default drill',
+        value:   'Mining_Drill',
+        options: [
+            { id: 'Mining_Drill', name: 'Mining Drill' },
+            { id: 'Advanced_Mining_Drill', name: 'Drill MK2' },
+            { id: 'Blast_Drill', name: 'Blast Drill' },
+        ],
+    },
+    {
+        id:      'smelter',
+        label:   'Default smelter',
+        value:   'Smelter',
+        options: [
+            { id: 'Smelter', name: 'Smelter' },
+            { id: 'Advanced_Smelter', name: 'Smelter MK2' },
+            { id: 'Blast_Smelter', name: 'Blast Smelter' },
+        ],
+    },
+    {
+        id:      'assembler',
+        label:   'Default assembler',
+        value:   'Assembler',
+        options: [
+            { id: 'Assembler', name: 'Assembler' },
+            { id: 'Advanced_Assembler', name: 'Assembler MK2' },
+        ],
+    },
+    {
+        id:      'thresher',
+        label:   'Default thresher',
+        value:   'Thresher',
+        options: [
+            { id: 'Thresher', name: 'Thresher' },
+            { id: 'Advanced_Thresher', name: 'Thresher MK2' },
+        ],
+    },
+];
 
 const Sidebar = () => {
-
-    const [ conveyorBelt, setConveyorBelt ] = useState<string>( 'Conveyor_Belt' );
-    const [ drill, setDrill ]               = useState<string>( 'Mining_Drill' );
-    const [ smelter, setSmelter ]           = useState<string>( 'Smelter' );
-    const [ assembler, setAssembler ]       = useState<string>( 'Assembler' );
-    const [ thresher, setThresher ]         = useState<string>( 'Thresher' );
-
     const setBeltCapacity        = useCraftStore( ( state ) => state.setBeltCapacity );
     const setAssemblerEfficiency = useCraftStore( ( state ) => state.setAssemblerEfficiency );
     const setSmelterEfficiency   = useCraftStore( ( state ) => state.setSmelterEfficiency );
     const setThresherEfficiency  = useCraftStore( ( state ) => state.setThresherEfficiency );
     const setDrillEfficiency     = useCraftStore( ( state ) => state.setDrillEfficiency );
 
+    const setConvoyerBelt = useCraftStore( ( state ) => state.setConveyorBelt );
+    const setDrill        = useCraftStore( ( state ) => state.setDrill );
+    const setSmelter      = useCraftStore( ( state ) => state.setSmelter );
+    const setAssembler    = useCraftStore( ( state ) => state.setAssembler );
+    const setThresher     = useCraftStore( ( state ) => state.setThresher );
+
+    function onValueChange( id: string, value: string ) {
+        console.log( `ON VALUE CHANGE ${ id } `, value );
+        switch ( id ) {
+            case 'conveyor_belt':
+                onConveyorBeltChange( value );
+                break;
+            case 'drill':
+                onDrillChange( value );
+                break;
+            case 'smelter':
+                onSmelterChange( value );
+                break;
+            case 'assembler':
+                onAssemblerChange( value );
+                break;
+            case 'thresher':
+                onThresherChange( value );
+                break;
+        }
+    }
+
     function onConveyorBeltChange( id: string ) {
-        setConveyorBelt( id );
         if ( id === 'Conveyor_Belt' ) {
             setBeltCapacity( 240 );
         } else if ( id === 'Advanced_Conveyor_Belt' ) {
@@ -29,49 +97,51 @@ const Sidebar = () => {
             setBeltCapacity( 720 );
         }
 
+        setConvoyerBelt( id );
         calculate();
     }
 
     function onDrillChange( id: string ) {
-        setDrill( id );
         if ( id === 'Mining_Drill' ) {
             setDrillEfficiency( 0.41670001 );
         } else if ( id === 'Advanced_Mining_Drill' ) {
             setDrillEfficiency( 0.625 );
         }
 
+        setDrill( id );
         calculate();
     }
 
     function onSmelterChange( id: string ) {
-        setSmelter( id );
         if ( id === 'Smelter' ) {
             setSmelterEfficiency( 1 );
         } else if ( id === 'Advanced_Smelter' ) {
             setSmelterEfficiency( 8 );
         }
 
+        setSmelter( id );
         calculate();
     }
 
     function onAssemblerChange( id: string ) {
-        setAssembler( id );
         if ( id === 'Assembler' ) {
             setAssemblerEfficiency( 0.25 );
         } else {
             setAssemblerEfficiency( 0.5 );
         }
+
+        setAssembler( id );
         calculate();
     }
 
     function onThresherChange( id: string ) {
-        setThresher( id );
         if ( id === 'Thresher' ) {
             setThresherEfficiency( 1 );
         } else {
             setThresherEfficiency( 2 );
         }
 
+        setThresher( id );
         calculate();
     }
 
@@ -84,76 +154,10 @@ const Sidebar = () => {
                     <legend className="-ml-1 px-1 text-sm font-medium">
                         Settings
                     </legend>
-                    <div className="grid gap-3">
-                        <Label htmlFor="model">Default transport belt</Label>
-                        <Select value={ conveyorBelt } onValueChange={ onConveyorBeltChange }>
-                            <SelectTrigger id="conveyor_belt"
-                                           className="items-start [&_[data-description]]:hidden">
-                                <SelectValue placeholder="Select a belt" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItemWithImage id="Conveyor_Belt" name="Conveyer Belt" />
-                                <SelectItemWithImage id="Advanced_Conveyor_Belt" name="Conveyer Belt MK2" />
-                                <SelectItemWithImage id="Advanced_Conveyor_Belt_2"
-                                                     name="Conveyer Belt MK3" />
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="grid gap-3">
-                        <Label htmlFor="model">Default drill</Label>
-                        <Select value={ drill } onValueChange={ onDrillChange }>
-                            <SelectTrigger id="drill"
-                                           className="items-start [&_[data-description]]:hidden">
-                                <SelectValue placeholder="Select a drill" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItemWithImage id="Mining_Drill" name="Mining Drill" />
-                                <SelectItemWithImage id="Advanced_Mining_Drill" name="Drill MK2" />
-                                <SelectItemWithImage id="Blast_Drill" name="Blast Drill" />
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="grid gap-3">
-                        <Label htmlFor="model">Default smelter</Label>
-                        <Select value={ smelter } onValueChange={ onSmelterChange }>
-                            <SelectTrigger id="smelter"
-                                           className="items-start [&_[data-description]]:hidden">
-                                <SelectValue placeholder="Select a smelter" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItemWithImage id="Smelter" name="Smelter" />
-                                <SelectItemWithImage id="Advanced_Smelter" name="Smelter MK2" />
-                                <SelectItemWithImage id="Blast_Smelter" name="Blast Smelter" />
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="grid gap-3">
-                        <Label htmlFor="model">Default assembler</Label>
-                        <Select value={ assembler } onValueChange={ onAssemblerChange }>
-                            <SelectTrigger id="assembler"
-                                           className="items-start [&_[data-description]]:hidden">
-                                <SelectValue placeholder="Select a assembler" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItemWithImage id="Assembler" name="Assembler" />
-                                <SelectItemWithImage id="Advanced_Assembler" name="Assembler MK2" />
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="grid gap-3">
-                        <Label htmlFor="model">Default thresher</Label>
-                        <Select value={ thresher } onValueChange={ onThresherChange }>
-                            <SelectTrigger id="thresher"
-                                           className="items-start [&_[data-description]]:hidden">
-                                <SelectValue placeholder="Select a thresher" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItemWithImage id="Thresher" name="Thresher" />
-                                <SelectItemWithImage id="Advanced_Thresher" name="Thresher MK2" />
-                            </SelectContent>
-                        </Select>
-                    </div>
-
+                    {
+                        selects.map( ( select ) => <CustomSelect key={ select.id } { ...select }
+                                                                 onValueChange={ onValueChange } /> )
+                    }
                 </fieldset>
             </form>
         </div>

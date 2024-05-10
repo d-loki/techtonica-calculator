@@ -139,6 +139,11 @@ export default function Home() {
     const [ quantityFactories, setQuantityFactories ] = useState<number>( 1 );
     const [ itemsPerMinute, setItemsPerMinute ]       = useState<number>( 5 );
     const results                                     = useCraftStore( ( state ) => state.results );
+    const conveyorBelt                                = useCraftStore( ( state ) => state.conveyorBelt );
+    const drill                                       = useCraftStore( ( state ) => state.drill );
+    const smelter                                     = useCraftStore( ( state ) => state.smelter );
+    const assembler                                   = useCraftStore( ( state ) => state.assembler );
+    const thresher                                    = useCraftStore( ( state ) => state.thresher );
 
     const setItem = useCraftStore( ( state ) => state.setItem );
 
@@ -280,8 +285,7 @@ export default function Home() {
                                                                 <div className="flex items-center gap-5">
                                                                     <div className="flex items-center gap-1">
                                                                         <Image className="rounded"
-                                                                            // src={ `/items/${ conveyorBelt }.png` }
-                                                                               src={ `/items/Mining_Drill.png` }
+                                                                               src={ `/items/${ conveyorBelt }.png` }
                                                                                alt="Conveyor Belt"
                                                                                width={ 48 }
                                                                                height={ 48 } />
@@ -293,11 +297,11 @@ export default function Home() {
                                                             <TableCell className="bg-purple-100">
                                                                 <div className="flex items-center gap-5">
                                                                     <div className="flex items-center gap-1">
-                                                                        {/*<FactoryImg produced_in={ result.produced_in }*/ }
-                                                                        {/*            current_drill={ drill }*/ }
-                                                                        {/*            current_smelter={ smelter }*/ }
-                                                                        {/*            current_assembler={ assembler }*/ }
-                                                                        {/*            current_thresher={ thresher } />*/ }
+                                                                        <FactoryImg produced_in={ result.produced_in }
+                                                                                    current_drill={ drill }
+                                                                                    current_smelter={ smelter }
+                                                                                    current_assembler={ assembler }
+                                                                                    current_thresher={ thresher } />
                                                                         X
                                                                     </div>
                                                                     <span>{ result.quantity_factories.toFixed( 2 ) }</span>
