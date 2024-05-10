@@ -147,7 +147,7 @@ const Sidebar = () => {
 
     return (
         <div
-            className="relative hidden flex-col items-start gap-8 md:flex"
+            className="basis-1/4 relative hidden flex-col items-start gap-8 md:flex"
         >
             <form className="grid w-full items-start gap-6">
                 <fieldset className="grid gap-6 rounded-lg border p-4">
