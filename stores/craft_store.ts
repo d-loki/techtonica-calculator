@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ResultType } from '@/app/page';
+import ResultType from '@/type/ResultType';
 
 interface CraftStore {
     calculType: 'items_per_minute' | 'quantity_factories';

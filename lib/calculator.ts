@@ -1,5 +1,8 @@
 import useCraftStore from '@/stores/craft_store';
-import { AlternativeRecipe, CraftType, ResultType, ThreshType } from '@/app/page';
+import CraftType from '@/type/CraftType';
+import ThreshType from '@/type/ThreshType';
+import AlternativeRecipe from '@/type/AlternativeRecipe';
+import ResultType from '@/type/ResultType';
 
 function convertBaseTimeToItembyMinute( baseTime: number ): number {
     return ( 60 / baseTime );
