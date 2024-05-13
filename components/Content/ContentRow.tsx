@@ -62,7 +62,7 @@ const ContentRow: FC<Props> = ( { result } ) => {
                         <CellContent itemId={ conveyorBelt } value={ result.belts } />
                     </TableCell>
                     <TableCell>
-                        <CellContent itemId={ result.produced_in } value={ result.belts }
+                        <CellContent itemId={ result.produced_in } value={ result.quantity_factories }
                                      customImage={ <FactoryImg produced_in={ result.produced_in } /> }
                         />
                     </TableCell>

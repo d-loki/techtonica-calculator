@@ -1,0 +1,35 @@
+[
+    {
+        "id":          "Iron_Ore_1",
+        "output":      "Iron_Ore",
+        "quantity":    "1",
+        "inputs":      [],
+        "base_time":   1,
+        "produced_in": "Drill"
+    },
+    {
+        "id":          "Copper_Ore_1",
+        "output":      "Copper_Ore",
+        "quantity":    "1",
+        "inputs":      [],
+        "base_time":   1,
+        "produced_in": "Drill"
+    },
+    {
+        "id":          "Limestone_1",
+        "output":      "Limestone",
+        "quantity":    "1",
+        "inputs":      [],
+        "base_time":   1,
+        "produced_in": "Drill"
+    },
+    {
+        "id":          "Atlantum_Ore_1",
+        "output":      "Atlantum_Ore",
+        "quantity":    "1",
+        "inputs":      [],
+        "base_time":   1,
+        "produced_in": "Drill"
+    }
+]
+

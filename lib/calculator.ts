@@ -3,6 +3,7 @@ import CraftType from '@/type/CraftType';
 import ThreshType from '@/type/ThreshType';
 import AlternativeRecipe from '@/type/AlternativeRecipe';
 import ResultType from '@/type/ResultType';
+import DrillType from '@/type/DrillType';
 
 function convertBaseTimeToItembyMinute( baseTime: number ): number {
     return ( 60 / baseTime );
@@ -21,6 +22,14 @@ function findThresh( id: string ): ThreshType[] {
     return thresh.filter( ( craft: any ) => {
         return craft.outputs.find( ( output: any ) => output.item === id );
     } );
+}
+
+function findDrill( id: string ): DrillType[] {
+    console.log( '%c IN FIND DRILL', 'background: #fdd835; color: #000000' );
+    const drills = require( '../data/v3/dist/drill.json' );
+
+    return drills.filter( ( drill: any ) => drill.output === id );
+
 }
 
 function updateResults( output: string,
@@ -127,13 +136,14 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
         const inputCraft = findCraft( input.item );
         console.log( `findThresh for input ${ id } `, findThresh( id ) );
 
+        const firstIndexInputNotBlacklisted = inputCraft.findIndex( ( craft ) => {
+            return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+        } );
+
+
         console.log( inputCraft );
-        if ( inputCraft.length > 0 ) {
-
-            const firstIndexInputNotBlacklisted = inputCraft.findIndex( ( craft ) => {
-                return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
-            } );
-
+        if ( inputCraft[ firstIndexInputNotBlacklisted ] !== undefined ) {
+            console.log( `AA_ IF 1 ${ id }` );
             // Si dans les inputs du craft on à le dernier output du dernier craft on stop afin de ne pas avoir de circulaire
             const findCirculare = inputCraft[ firstIndexInputNotBlacklisted ].inputs.find( ( input ) => input.item === craft[ firstIndexNotBlacklisted ].output );
 
@@ -171,16 +181,18 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
             console.log( `NEDD ${ itemsPerMinuteNeeded1 } ${ input.item }` );
             threeCrafts( input.item, result, itemsPerMinuteNeeded1 );
         } else {
+            console.log( `AA_ ELSE 1 ${ id }` );
+
             const thresh                         = findThresh( input.item );
             const firstIndexThreshNotBlacklisted = thresh.findIndex( ( craft ) => {
                 return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
             } );
 
-            if ( thresh.length > 0 ) {
+            if ( thresh[ firstIndexThreshNotBlacklisted ] !== undefined ) {
                 console.log( `%c IN THRESH`, 'background: #F600FF; color: #000000' );
 
 
-                console.log( `Result for ${ input.item } : `, thresh[ firstIndexThreshNotBlacklisted ] );
+                console.log( `AA_ Result for ${ input.item } : `, thresh[ firstIndexThreshNotBlacklisted ] );
 
                 const inputPerMin = convertBaseTimeToItembyMinute( thresh[ firstIndexThreshNotBlacklisted ].base_time ) * useCraftStore.getState().thresherEfficiency;
                 console.log( `input per minute = ${ inputPerMin } for ${ input.item }` );
@@ -212,6 +224,47 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
                                [],
                                [],
                                result );
+            } else {
+                console.log( `AA_ ELSE 2 ${ id }` );
+                const drill = findDrill( input.item );
+                console.log( 'AA_ input', input );
+                console.log( 'AA_ DRIL', drill );
+
+                if ( drill.length > 0 ) {
+                    console.log( `%c IN DRILL`, 'background: #F600FF; color: #000000' );
+
+                    console.log( 'AA_ itemsPerMinuteNeeded', itemsPerMinuteNeeded );
+                    console.log( 'AA_ ', drill[ 0 ].base_time );
+                    console.log( 'AA_ ', convertBaseTimeToItembyMinute( drill[ 0 ].base_time ) );
+                    console.log( 'AA_ ', useCraftStore.getState().drillEfficiency );
+                    const inputPerMin = convertBaseTimeToItembyMinute( drill[ 0 ].base_time ) * useCraftStore.getState().drillEfficiency;
+                    console.log( `AA_ input per minute = ${ inputPerMin } for ${ input.item }` );
+
+                    const ef = useCraftStore.getState().drillEfficiency;
+                    const qf = convertBaseTimeToItembyMinute( drill[ 0 ].base_time ) * drill[ 0 ].quantity * ef;
+
+                    console.log( 'AA_ QF', qf );
+                    updateResults( input.item,
+                                   itemsPerMinuteNeeded,
+                                   itemsPerMinuteNeeded / itemPerbelt,
+                                   itemsPerMinuteNeeded / qf,
+                                   'Mining_Drill',
+                                   [],
+                                   [],
+                                   result );
+                    console.log( 'AA_ result', result );
+
+                    // Ca va compté en double si on a besoin de Kindlevine_Extract et Plantmatter_Fiber dans une même recette par exemple
+                    // updateResults( drill[ firstIndexDrillNotBlacklisted ].input,
+                    //                inputPerMin * ( itemsPerMinuteNeeded / qf ),
+                    //                inputPerMin / itemPerbelt,
+                    //                itemsPerMinuteNeeded / qf,
+                    //                'Drill',
+                    //                [],
+                    //                [],
+                    //                result );
+                }
+
             }
         }
     }
