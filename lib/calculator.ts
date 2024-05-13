@@ -5,18 +5,22 @@ import AlternativeRecipe from '@/type/AlternativeRecipe';
 import ResultType from '@/type/ResultType';
 import DrillType from '@/type/DrillType';
 
+function randomId() {
+    return Math.random().toString( 36 ).substring( 2, 15 ) + Math.random().toString( 36 ).substring( 2, 15 );
+}
+
 function convertBaseTimeToItembyMinute( baseTime: number ): number {
     return ( 60 / baseTime );
 }
 
 
-function findCraft( id: string ): CraftType[] {
+export function findCraft( id: string ): CraftType[] {
     const crafts = require( '../data/v3/dist/craft.json' );
 
     return crafts.filter( ( craft: any ) => ( craft.output === id ) );
 }
 
-function findThresh( id: string ): ThreshType[] {
+export function findThresh( id: string ): ThreshType[] {
     const thresh = require( '../data/v3/dist/thresh.json' );
 
     return thresh.filter( ( craft: any ) => {
@@ -24,12 +28,10 @@ function findThresh( id: string ): ThreshType[] {
     } );
 }
 
-function findDrill( id: string ): DrillType[] {
-    console.log( '%c IN FIND DRILL', 'background: #fdd835; color: #000000' );
+export function findDrill( id: string ): DrillType[] {
     const drills = require( '../data/v3/dist/drill.json' );
 
     return drills.filter( ( drill: any ) => drill.output === id );
-
 }
 
 function updateResults( output: string,
@@ -47,7 +49,7 @@ function updateResults( output: string,
         results[ existingIndex ].quantity_factories += quantityFactories;
     } else {
         results.push( {
-                          id:                 crypto.randomUUID(),
+                          id:                 randomId(),
                           output,
                           items_per_minute:   itemsPerMinute,
                           belts,
@@ -59,8 +61,12 @@ function updateResults( output: string,
     }
 }
 
+export function getBlacklistedRecipes(): string[] {
+    return useCraftStore.getState().blacklistedRecipes;
+}
 
-function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 ): ResultType[] {
+
+export function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 ): ResultType[] {
 
     console.log( '%c threeCrafts', 'background: #3DFFC0; color: #000000' );
     const craft = findCraft( id );
@@ -76,7 +82,7 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
     const assemblerEfficiency = useCraftStore.getState().assemblerEfficiency;
 
     const firstIndexNotBlacklisted = craft.findIndex( ( craft ) => {
-        return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+        return !getBlacklistedRecipes().includes( craft.id );
     } );
     console.log( 'firstIndexNotBlacklisted', firstIndexNotBlacklisted );
 
@@ -137,7 +143,7 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
         console.log( `findThresh for input ${ id } `, findThresh( id ) );
 
         const firstIndexInputNotBlacklisted = inputCraft.findIndex( ( craft ) => {
-            return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+            return !getBlacklistedRecipes().includes( craft.id );
         } );
 
 
@@ -176,8 +182,12 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
             }
             console.log( `Input qty ${ input.quantity }` );
 
-            // On divise par deux car dans une assembleuse on produit 2 items par craft
-            const itemsPerMinuteNeeded1 = input.quantity * itemsPerMinuteNeeded / 2;
+            let itemsPerMinuteNeeded1 = input.quantity * itemsPerMinuteNeeded;
+            if ( craft[ firstIndexNotBlacklisted ].produced_in === 'Assembler' ) {
+                // On divise par deux car dans une assembleuse on produit 2 items par craft
+                itemsPerMinuteNeeded1 = itemsPerMinuteNeeded1 / 2;
+            }
+
             console.log( `NEDD ${ itemsPerMinuteNeeded1 } ${ input.item }` );
             threeCrafts( input.item, result, itemsPerMinuteNeeded1 );
         } else {
@@ -185,7 +195,7 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
             const thresh                         = findThresh( input.item );
             const firstIndexThreshNotBlacklisted = thresh.findIndex( ( craft ) => {
-                return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+                return !getBlacklistedRecipes().includes( craft.id );
             } );
 
             if ( thresh[ firstIndexThreshNotBlacklisted ] !== undefined ) {
@@ -245,9 +255,9 @@ function threeCrafts( id: string, result: any[] = [], itemsPerMinuteNeeded = 1 )
 
                     console.log( 'AA_ QF', qf );
                     updateResults( input.item,
-                                   itemsPerMinuteNeeded,
-                                   itemsPerMinuteNeeded / itemPerbelt,
-                                   itemsPerMinuteNeeded / qf,
+                                   itemsPerMinuteNeeded * input.quantity,
+                                   itemsPerMinuteNeeded * input.quantity / itemPerbelt,
+                                   itemsPerMinuteNeeded * input.quantity / qf,
                                    'Mining_Drill',
                                    [],
                                    [],
@@ -289,7 +299,7 @@ function calculate() {
     if ( calculType === 'quantity_factories' ) {
         const craft                    = findCraft( item );
         const firstIndexNotBlacklisted = craft.findIndex( ( craft ) => {
-            return !useCraftStore.getState().blacklistedRecipes.includes( craft.id );
+            return !getBlacklistedRecipes().includes( craft.id );
         } );
 
         if ( craft.length > 0 ) {
